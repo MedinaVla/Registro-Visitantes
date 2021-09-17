@@ -2,7 +2,7 @@
 
 // part 'visitor_state_notifier.dart';
 
-import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Provider to use the VisitorStateNotifier
 // final visitorNotifierProvider = StateNotifierProvider(
