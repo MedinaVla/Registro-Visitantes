@@ -20,10 +20,6 @@ class VisitorForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Datos del visitante",
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
           SizedBox(width: double.infinity, child: FormVisitor()),
         ],
       ),

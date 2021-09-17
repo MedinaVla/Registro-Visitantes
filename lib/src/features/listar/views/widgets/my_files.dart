@@ -1,8 +1,8 @@
 import 'package:admin/src/core/shared_widgets/responsive.dart';
 import 'package:admin/src/core/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:admin/models/MyFiles.dart';
 import 'file_info_card.dart';
+import 'my_files_model.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({

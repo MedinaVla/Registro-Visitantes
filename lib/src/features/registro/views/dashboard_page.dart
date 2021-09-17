@@ -1,6 +1,7 @@
 // import 'package:admin/responsive.dart';
 // import 'package:admin/screens/dashboard/components/my_fields.dart';
 import 'package:admin/src/core/styles.dart';
+import 'package:admin/src/features/registro/views/widgets/header_dashboard.dart';
 import 'package:flutter/material.dart';
 
 import 'form_page.dart';
@@ -15,6 +16,7 @@ class DashboardPage extends StatelessWidget {
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
+            HeaderDashBoard(),
             SizedBox(height: defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

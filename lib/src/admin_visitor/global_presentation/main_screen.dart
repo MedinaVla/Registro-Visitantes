@@ -15,9 +15,6 @@ class MainScreen extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     return Scaffold(
       key: watch(menuProvider).scaffoldKey,
-      appBar: AppBar(
-        title: Text("Drawer"),
-      ),
       drawer: SideMenu(),
       body: _pages[watch(pagesProvider).state],
     );
