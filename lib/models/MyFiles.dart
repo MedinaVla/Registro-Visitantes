@@ -1,4 +1,4 @@
-import 'package:admin/constants.dart';
+import 'package:admin/src/core/colors.dart';
 import 'package:flutter/material.dart';
 
 class CloudStorageInfo {

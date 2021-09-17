@@ -1,14 +1,13 @@
 // import 'package:admin/responsive.dart';
 // import 'package:admin/screens/dashboard/components/my_fields.dart';
+import 'package:admin/src/core/styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-import 'components/header.dart';
+import 'form_page.dart';
 
-import 'components/recent_files.dart';
 // import 'components/storage_details.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,7 +15,6 @@ class DashboardScreen extends StatelessWidget {
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            Header(),
             SizedBox(height: defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       // MyFiles(),
                       SizedBox(height: defaultPadding),
-                      RecentFiles(),
+                      Container(child: VisitorForm()),
                       // if (Responsive.isMobile(context))
                       //   SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),

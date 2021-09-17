@@ -1,21 +1,26 @@
-import 'package:admin/controllers/MenuController.dart';
-import 'package:admin/responsive.dart';
-import 'package:admin/screens/dashboard/dashboard_screen.dart';
+import 'package:admin/src/admin_visitor/providers.dart';
+import 'package:admin/src/features/listar/views/listar_page.dart';
+import 'package:admin/src/features/registro/views/dashboard_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'components/side_menu.dart';
+import 'side_menu.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends ConsumerWidget {
+  final List<Widget> _pages = [
+    DashboardPage(),
+    ListarPage(),
+  ];
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     return Scaffold(
-        key: context.read<MenuController>().scaffoldKey,
-        appBar: AppBar(
-          title: Text("Drawer"),
-        ),
-        drawer: SideMenu(),
-        body: DashboardScreen());
+      key: watch(menuProvider).scaffoldKey,
+      appBar: AppBar(
+        title: Text("Drawer"),
+      ),
+      drawer: SideMenu(),
+      body: _pages[watch(pagesProvider).state],
+    );
   }
 }
 /**SafeArea(

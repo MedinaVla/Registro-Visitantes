@@ -1,13 +1,16 @@
+import 'package:admin/src/admin_visitor/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SideMenu extends StatelessWidget {
+class SideMenu extends ConsumerWidget {
   const SideMenu({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final page = watch(pagesProvider);
     return Drawer(
       child: ListView(
         children: [
@@ -18,6 +21,7 @@ class SideMenu extends StatelessWidget {
             title: "Inicio",
             svgSrc: "assets/icons/menu_dashbord.svg",
             press: () {
+              page.state = 0;
               Navigator.pop(context);
             },
           ),
@@ -25,6 +29,8 @@ class SideMenu extends StatelessWidget {
             title: "Listado Visitantes",
             svgSrc: "assets/icons/menu_tran.svg",
             press: () {
+              page.state = 1;
+
               Navigator.pop(context);
             },
           ),
