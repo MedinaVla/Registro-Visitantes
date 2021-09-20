@@ -22,7 +22,7 @@ class HeaderConfiguration extends ConsumerWidget {
           ),
         if (Responsive.isDesktop(context))
           Text(
-            "Configuracion",
+            "Configuración",
             style: Theme.of(context).textTheme.headline6,
           ),
         if (Responsive.isTablet(context))
@@ -32,7 +32,7 @@ class HeaderConfiguration extends ConsumerWidget {
           ),
         if (Responsive.isTablet(context))
           Text(
-            "Configuracion",
+            "Configuración",
             style: Theme.of(context).textTheme.headline6,
           ),
         if (Responsive.isMobile(context))

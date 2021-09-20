@@ -1,11 +1,12 @@
 import 'package:admin/src/core/colors.dart';
 import 'package:admin/src/core/styles.dart';
+import 'package:admin/src/features/configuration/views/widgets/buttons/buttons.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/widgets.dart';
 
-class UploadPage extends StatelessWidget {
-  const UploadPage({
+class UploadView extends StatelessWidget {
+  const UploadView({
     Key? key,
   }) : super(key: key);
 
@@ -18,9 +19,16 @@ class UploadPage extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(width: double.infinity, child: UploadForm()),
+          Text(
+            'Subir listado de areas de visita',
+            style: TextStyle(fontSize: 20),
+          ),
+          SizedBox(
+            width: double.infinity,
+          ),
+          UploadForm(),
         ],
       ),
     );

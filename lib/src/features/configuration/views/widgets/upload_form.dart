@@ -1,8 +1,13 @@
+import 'package:admin/src/core/shared_widgets/button_icon.dart';
 import 'package:admin/src/core/shared_widgets/responsive.dart';
 import 'package:admin/src/core/styles.dart';
+import 'package:admin/src/features/configuration/views/widgets/buttons/configuration_upload_button.dart';
+import 'package:admin/src/features/configuration/views/widgets/passowrd_form_upload.dart';
+import 'package:admin/src/features/place/logic/place_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'save_button_form.dart';
+import 'buttons/configuration_password_button.dart';
 
 // import 'ci_form_visitor.dart';
 // import 'drop_down_places.dart';
@@ -12,7 +17,7 @@ import 'save_button_form.dart';
 // import 'solapin_form_visitor.dart';
 // import 'spell_form_visitor.dart';
 
-class UploadForm extends StatelessWidget {
+class UploadForm extends ConsumerWidget {
   UploadForm({
     Key? key,
   }) : super(key: key);
@@ -20,21 +25,47 @@ class UploadForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     final Size size = MediaQuery.of(context).size;
 
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
-          if (Responsive.isMobile(context)) Column(),
+          SizedBox(height: defaultPadding),
+          columnTextForm(
+            context,
+            size,
+            textForm1: PasswordFormUpload(),
+          ),
           Divider(),
           SizedBox(height: defaultPadding),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SaveButtonForm(formKey: _formKey),
+              ElevatedButtonIcon(
+                icon: Icons.save,
+                label: Text('Aceptar'),
+                onPressed: () {},
+              ),
+              Container(
+                width: size.width / 10,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: defaultPadding,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButtonIcon(
+                icon: Icons.upload_file_outlined,
+                label: Text('Cargar '),
+                onPressed: () {
+                  context.read(placeNotifierProvider.notifier).uploadPlaces();
+                },
+              ),
               Container(
                 width: size.width / 10,
               ),
@@ -45,13 +76,11 @@ class UploadForm extends StatelessWidget {
     );
   }
 
-  Widget columnTextForm(context, size,
-      {required Widget textForm1, required Widget textForm2}) {
+  Widget columnTextForm(context, size, {required Widget textForm1}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Container(width: size.width, child: textForm1),
-        Container(width: size.width, child: textForm2),
+        Container(width: size.width / 3, child: textForm1),
       ],
     );
   }
@@ -79,27 +108,3 @@ class UploadForm extends StatelessWidget {
     );
   }
 }
-
-// DataRow recentFileDataRow(RecentFile fileInfo) {
-//   return DataRow(
-//     cells: [
-//       DataCell(
-//         Row(
-//           children: [
-//             SvgPicture.asset(
-//               fileInfo.icon!,
-//               height: 30,
-//               width: 30,
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-//               child: Text(fileInfo.title!),
-//             ),
-//           ],
-//         ),
-//       ),
-//       DataCell(Text(fileInfo.date!)),
-//       DataCell(Text(fileInfo.size!)),
-//     ],
-//   );
-// }

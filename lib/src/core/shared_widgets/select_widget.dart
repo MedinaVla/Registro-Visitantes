@@ -11,7 +11,7 @@ class AppDropdownInput<T> extends StatelessWidget {
   final EdgeInsetsGeometry contentPadding;
 
   AppDropdownInput(
-      {this.hintText = 'Seleccione una opcion',
+      {this.hintText = 'Seleccione una opción',
       this.options = const [],
       this.onTap,
       required this.icon,

@@ -6,6 +6,7 @@ class TextFormWidget extends StatelessWidget {
     Key? key,
     this.switchValue = false,
     this.inputFormatters,
+    this.obscureText = false,
     required this.nameController,
     required this.errorFont,
     required this.labelText,
@@ -22,11 +23,13 @@ class TextFormWidget extends StatelessWidget {
   final IconData iconValue;
   final int? maxLength;
   final List<TextInputFormatter>? inputFormatters;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
         readOnly: switchValue,
+        obscureText: obscureText,
         controller: nameController,
         textInputAction: TextInputAction.next,
         validator: validator,

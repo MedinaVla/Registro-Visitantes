@@ -42,7 +42,7 @@ class SideMenu extends ConsumerWidget {
             },
           ),
           DrawerListTile(
-            title: "Configuracion",
+            title: "Configuración",
             svgSrc: "assets/icons/menu_doc.svg",
             press: () {
               page.state = 3;

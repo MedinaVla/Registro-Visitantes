@@ -1,7 +1,7 @@
 import 'package:admin/src/core/styles.dart';
 import 'package:flutter/material.dart';
 
-import 'upload_page.dart';
+import 'upload_view.dart';
 import 'widgets/header_configuration.dart';
 
 class ConfigurationPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class ConfigurationPage extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: defaultPadding),
-                      Container(child: UploadPage()),
+                      Container(child: UploadView()),
                     ],
                   ),
                 ),
