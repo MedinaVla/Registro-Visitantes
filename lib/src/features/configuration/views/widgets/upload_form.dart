@@ -2,16 +2,18 @@ import 'package:admin/src/core/shared_widgets/responsive.dart';
 import 'package:admin/src/core/styles.dart';
 import 'package:flutter/material.dart';
 
-import 'ci_form_visitor.dart';
-import 'drop_down_places.dart';
-import 'drop_down_workers.dart';
-import 'name_form_visitor.dart';
 import 'save_button_form.dart';
-import 'solapin_form_visitor.dart';
-import 'spell_form_visitor.dart';
 
-class FormVisitor extends StatelessWidget {
-  FormVisitor({
+// import 'ci_form_visitor.dart';
+// import 'drop_down_places.dart';
+// import 'drop_down_workers.dart';
+// import 'name_form_visitor.dart';
+// import 'save_button_form.dart';
+// import 'solapin_form_visitor.dart';
+// import 'spell_form_visitor.dart';
+
+class UploadForm extends StatelessWidget {
+  UploadForm({
     Key? key,
   }) : super(key: key);
 
@@ -26,55 +28,8 @@ class FormVisitor extends StatelessWidget {
       child: Column(
         children: [
           if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
-          if (Responsive.isMobile(context))
-            columnTextForm(
-              context,
-              size,
-              textForm1: NameVisitor(),
-              textForm2: SpellVisitor(),
-            ),
-          if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
-          if (Responsive.isMobile(context))
-            columnTextForm(
-              context,
-              size,
-              textForm1: CiVisitor(),
-              textForm2: SolapinVisitor(),
-            ),
-          if (!Responsive.isMobile(context)) SizedBox(height: defaultPadding),
-          if (!Responsive.isMobile(context))
-            rowTextForm(
-              context,
-              size,
-              textForm1: NameVisitor(),
-              textForm2: SpellVisitor(),
-            ),
-          if (!Responsive.isMobile(context)) SizedBox(height: defaultPadding),
-          if (!Responsive.isMobile(context))
-            rowTextForm(
-              context,
-              size,
-              textForm1: CiVisitor(),
-              textForm2: SolapinVisitor(),
-            ),
+          if (Responsive.isMobile(context)) Column(),
           Divider(),
-          if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
-          if (Responsive.isMobile(context))
-            columnSelectForm(
-              context,
-              size,
-              textForm1: DropDownPlaces(),
-              textForm2: DropDownWorkers(),
-            ),
-          SizedBox(height: defaultPadding),
-          if (!Responsive.isMobile(context)) SizedBox(height: defaultPadding),
-          if (!Responsive.isMobile(context))
-            rowTextForm(
-              context,
-              size,
-              textForm1: DropDownPlaces(),
-              textForm2: DropDownWorkers(),
-            ),
           SizedBox(height: defaultPadding),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

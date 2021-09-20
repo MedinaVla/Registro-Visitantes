@@ -1,0 +1,33 @@
+name: place
+description: Dart package to manage places data and domain layers.
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+
+dependencies:
+  # Scope Packages
+  errors:
+    git:
+      url: git://github.com/NoScopeDevs/errors
+      
+  dartz:
+  freezed_annotation:
+  meta:
+  path:
+  filepicker_windows: ^2.0.0
+  sqflite_common_ffi: ^2.0.0+3
+
+dev_dependencies:
+  # code generators
+  build_runner:
+  freezed:
+  json_serializable:
+
+  # testing
+  mockito:
+  test:
+
+  # static analysis
+  # very_good_analysis:

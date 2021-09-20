@@ -1,4 +1,5 @@
 import 'package:admin/src/admin_visitor/providers.dart';
+import 'package:admin/src/features/configuration/views/configuration_page.dart';
 import 'package:admin/src/features/listar/views/listar_page.dart';
 import 'package:admin/src/features/registro/views/dashboard_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ class MainScreen extends ConsumerWidget {
   final List<Widget> _pages = [
     DashboardPage(),
     ListarPage(),
+    ListarPage(),
+    ConfigurationPage(),
   ];
   @override
   Widget build(BuildContext context, ScopedReader watch) {

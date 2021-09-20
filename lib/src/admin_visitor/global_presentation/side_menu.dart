@@ -30,7 +30,6 @@ class SideMenu extends ConsumerWidget {
             svgSrc: "assets/icons/menu_tran.svg",
             press: () {
               page.state = 1;
-
               Navigator.pop(context);
             },
           ),
@@ -38,6 +37,7 @@ class SideMenu extends ConsumerWidget {
             title: "Marcar Salida Visitantes",
             svgSrc: "assets/icons/menu_task.svg",
             press: () {
+              page.state = 2;
               Navigator.pop(context);
             },
           ),
@@ -45,6 +45,7 @@ class SideMenu extends ConsumerWidget {
             title: "Configuracion",
             svgSrc: "assets/icons/menu_doc.svg",
             press: () {
+              page.state = 3;
               Navigator.pop(context);
             },
           ),

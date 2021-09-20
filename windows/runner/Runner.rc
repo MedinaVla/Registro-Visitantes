@@ -52,7 +52,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_APP_ICON            ICON                    "resources\\mhp_logo.ico"
+IDI_APP_ICON            ICON                    "resources\\app_icon.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Med Genie" "\0"
+            VALUE "CompanyName", "com.example" "\0"
             VALUE "FileDescription", "A new Flutter project." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flutter_admin_portal" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 FAP. All rights reserved." "\0"
-            VALUE "OriginalFilename", "fdp.exe" "\0"
-            VALUE "ProductName", "flutter_admin_portal" "\0"
+            VALUE "InternalName", "admin" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2021 com.example. All rights reserved." "\0"
+            VALUE "OriginalFilename", "admin.exe" "\0"
+            VALUE "ProductName", "admin" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
