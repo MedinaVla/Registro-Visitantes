@@ -4,7 +4,7 @@ import 'package:admin/src/core/styles.dart';
 import 'package:admin/src/features/registro/views/widgets/header_dashboard.dart';
 import 'package:flutter/material.dart';
 
-import 'form_page.dart';
+import 'visitor_form_view.dart';
 
 // import 'components/storage_details.dart';
 
@@ -27,7 +27,7 @@ class DashboardPage extends StatelessWidget {
                     children: [
                       // MyFiles(),
                       SizedBox(height: defaultPadding),
-                      Container(child: VisitorForm()),
+                      Container(child: VisitorFormView()),
                       // if (Responsive.isMobile(context))
                       //   SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),

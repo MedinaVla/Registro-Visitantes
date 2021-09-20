@@ -3,24 +3,24 @@ import 'package:admin/src/core/shared_widgets/text_form_widget.dart';
 import 'package:admin/src/core/utils/validartor.dart';
 import 'package:admin/src/features/registro/logic/registro_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NameVisitor extends ConsumerWidget {
-  NameVisitor({Key? key}) : super(key: key);
-  final name = TextEditingController();
+class SolapinVisitor extends ConsumerWidget {
+  SolapinVisitor({Key? key}) : super(key: key);
+  final solapinController = TextEditingController();
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final double errorFont = Responsive.isMobile(context) ? 10.0 : 15.0;
-
-    final switchValue = watch(swtichProvider);
     return TextFormWidget(
-      // switchValue: switchValue,
-      name: name,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      nameController: solapinController,
       errorFont: errorFont,
-      labelText: 'Nombre',
+      labelText: '# Solapín',
       validator: (value) => validateName(value),
-      iconValue: Icons.perm_identity,
+      iconValue: Icons.credit_card_outlined,
+      maxLength: 3,
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:admin/src/features/registro/logic/dropdown_places_provider.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'select_places.dart';
+import '../select_places.dart';
 
 class DropDownPlaces extends ConsumerWidget {
   const DropDownPlaces({

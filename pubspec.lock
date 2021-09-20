@@ -457,7 +457,7 @@ packages:
   place:
     dependency: "direct main"
     description:
-      path: "packages/place"
+      path: "package/place"
       relative: true
     source: path
     version: "0.0.1+1"

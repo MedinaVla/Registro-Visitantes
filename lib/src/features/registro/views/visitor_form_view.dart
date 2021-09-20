@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'widgets/widgets.dart';
 
-class VisitorForm extends StatelessWidget {
-  const VisitorForm({
+class VisitorFormView extends StatelessWidget {
+  const VisitorFormView({
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class VisitorForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(width: double.infinity, child: FormVisitor()),
+          SizedBox(width: double.infinity, child: VisitorForm()),
         ],
       ),
     );
