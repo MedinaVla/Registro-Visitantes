@@ -59,4 +59,10 @@ class PlaceRepository implements IPlaceRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, String>> insertVisitor() {
+    // TODO: implement insertVisitor
+    throw UnimplementedError();
+  }
 }

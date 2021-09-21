@@ -29,7 +29,7 @@ class DatabaseHandler {
         options: OpenDatabaseOptions(
           onCreate: (database, version) async {
             await database.execute(
-              "CREATE TABLE visitantes(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, spell Text, ci INTEGER, credentialNumber INTEGER, placeToGo TEXT, workerName TEXT,dateOfVisit TEXT, timeOfVisit TEXT, timeEnd TEXT)",
+              "CREATE TABLE visitors(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, spell Text, ci INTEGER, credentialNumber INTEGER, placeToGo TEXT, workerName TEXT,dateOfVisit TEXT, timeOfVisit TEXT, timeEnd TEXT,)",
             );
             await database.execute(
               "CREATE TABLE places(id INTEGER PRIMARY KEY AUTOINCREMENT, namePlace TEXT, workerName Text)",
