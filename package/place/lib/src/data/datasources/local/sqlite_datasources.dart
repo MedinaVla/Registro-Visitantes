@@ -29,8 +29,20 @@ class DatabaseHandler {
         options: OpenDatabaseOptions(
           onCreate: (database, version) async {
             await database.execute(
-              "CREATE TABLE visitors(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, spell Text, ci INTEGER, credentialNumber INTEGER, placeToGo TEXT, workerName TEXT,dateOfVisit TEXT, timeOfVisit TEXT, timeEnd TEXT,)",
+              "CREATE TABLE visitors(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, spell Text, ci INTEGER, solapin INTEGER, namePlace TEXT, nameWorker TEXT,dateInVisit TEXT, timeInVisit TEXT, dateOnVisit TEXT,timeOnVisit TEXT)",
             );
+
+            /**  final int id;
+  final String name;
+  final String spell;
+  final int ci;
+  final int solapin;
+  final String namePlace;
+  final String nameWorker;
+  final String dateInVisit;
+  final String timeInVisit;
+  final String dateOnVisit;
+  final String timeOnVisit; */
             await database.execute(
               "CREATE TABLE places(id INTEGER PRIMARY KEY AUTOINCREMENT, namePlace TEXT, workerName Text)",
             );
@@ -48,6 +60,14 @@ class DatabaseHandler {
       place.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    return result;
+  }
+
+  Future<int> insertVisitor(VisitorModel visitor) async {
+    int result = 0;
+    final Database? db = await database;
+    result = await db!.insert('visitors', visitor.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
     return result;
   }
 

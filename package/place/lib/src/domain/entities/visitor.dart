@@ -16,8 +16,14 @@ abstract class Visitor extends Equatable {
   });
 
   final int id;
-  final String name, spell;
-  final int ci, solapin;
-  final String namePlace, nameWorker;
-  final String dateInVisit, timeInVisit, dateOnVisit, timeOnVisit;
+  final String name;
+  final String spell;
+  final int ci;
+  final int solapin;
+  final String namePlace;
+  final String nameWorker;
+  final String dateInVisit;
+  final String timeInVisit;
+  final String? dateOnVisit;
+  final String? timeOnVisit;
 }

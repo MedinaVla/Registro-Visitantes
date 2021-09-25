@@ -6,4 +6,5 @@ abstract class LocalDBDataSources extends ILocalDataSources {
   Future<List<PlaceToGo>> getPlaces();
   Future<List<String>> getPlacesNames();
   Future<List<String>> getWorkersNames();
+  Future<String> insertVisitor(VisitorModel visitor);
 }

@@ -32,4 +32,9 @@ class DBDatasources implements LocalDBDataSources {
 
     return workerNames;
   }
+
+  @override
+  Future<String> insertVisitor(VisitorModel visitor) async {
+    return await DatabaseHandler.instance.insertVisitor(visitor).toString();
+  }
 }

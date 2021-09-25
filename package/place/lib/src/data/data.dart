@@ -8,6 +8,7 @@ export 'datasources/local/sqlite_datasources.dart';
 // Export Models
 export 'models/place_model.dart';
 export 'models/place_to_go_model.dart';
+export 'models/visitor_model.dart';
 
 // Export Repositories Implementations
 export 'repositories/place_repository.dart';

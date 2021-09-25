@@ -1,7 +1,10 @@
-import 'package:place/src/domain/entities/place_to_go.dart';
 import 'package:place/src/domain/entities/visitor.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class VisitorModel extends Visitor {
+part 'visitor_model.g.dart';
+
+@JsonSerializable()
+class VisitorModel implements Visitor {
   VisitorModel({
     required this.id,
     required this.name,
@@ -10,32 +13,28 @@ class VisitorModel extends Visitor {
     required this.solapin,
     required this.namePlace,
     required this.nameWorker,
-    required this.placeToGoId,
     required this.dateInVisit,
     required this.timeInVisit,
     required this.dateOnVisit,
     required this.timeOnVisit,
-  }) : super(
-          id: id,
-          name: name,
-          spell: spell,
-          ci: ci,
-          solapin: solapin,
-          namePlace: namePlace,
-          nameWorker: nameWorker,
-          dateInVisit: dateInVisit,
-          timeInVisit: timeInVisit,
-          dateOnVisit: dateOnVisit,
-          timeOnVisit: timeOnVisit,
-        );
+  }) : super();
 
   final int id;
-  final String name, spell;
-  final int ci, solapin;
-  final String namePlace, nameWorker;
+  final String name;
+  final String spell;
+  final int ci;
+  final int solapin;
+  final String namePlace;
+  final String nameWorker;
+  final String dateInVisit;
+  final String timeInVisit;
+  final String? dateOnVisit;
+  final String? timeOnVisit;
 
-  final PlaceToGo placeToGoId;
-  final String dateInVisit, timeInVisit, dateOnVisit, timeOnVisit;
+  factory VisitorModel.fromJson(Map<String, dynamic> json) =>
+      _$VisitorModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VisitorModelToJson(this);
 
   @override
   List<Object?> get props => [
@@ -44,7 +43,8 @@ class VisitorModel extends Visitor {
         spell,
         ci,
         solapin,
-        placeToGoId,
+        namePlace,
+        nameWorker,
         dateInVisit,
         timeInVisit,
         dateOnVisit,

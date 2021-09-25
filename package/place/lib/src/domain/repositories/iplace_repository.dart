@@ -7,5 +7,5 @@ abstract class IPlaceRepository {
   Future<List<String>> getPlacesNames();
   Future<Either<Failure, List<String>>> getWorkersNames();
   Future<Either<Failure, String>> uploadPlaces();
-  Future<Either<Failure, String>> insertVisitor();
+  Future<Either<Failure, String>> insertVisitor(VisitorModel visitor);
 }

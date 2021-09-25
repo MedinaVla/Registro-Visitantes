@@ -13,7 +13,7 @@ dependencies:
       url: git://github.com/NoScopeDevs/errors
       
   dartz:
-  freezed_annotation:
+  json_annotation:
   meta:
   path:
   filepicker_windows: ^2.0.0
@@ -22,7 +22,7 @@ dependencies:
 dev_dependencies:
   # code generators
   build_runner:
-  freezed:
+  # freezed:
   json_serializable:
 
   # testing
