@@ -7,15 +7,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SpellVisitor extends ConsumerWidget {
   SpellVisitor({Key? key}) : super(key: key);
-  final spellController = TextEditingController();
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final double errorFont = Responsive.isMobile(context) ? 10.0 : 15.0;
     final switchValue = watch(swtichProvider);
+    final spellController = watch(spellControllerProvider);
+
     return TextFormWidget(
+      controller: spellController.state,
       switchValue: !switchValue.state,
-      nameController: spellController,
       errorFont: errorFont,
       labelText: 'Apellidos',
       validator: (value) => validateName(value),

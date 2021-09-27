@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 abstract class Visitor extends Equatable {
   Visitor({
-    required this.id,
+    this.id,
     required this.name,
     required this.spell,
     required this.ci,
@@ -15,7 +15,7 @@ abstract class Visitor extends Equatable {
     required this.timeOnVisit,
   });
 
-  final int id;
+  final int? id;
   final String name;
   final String spell;
   final int ci;

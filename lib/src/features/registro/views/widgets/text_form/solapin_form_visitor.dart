@@ -8,14 +8,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SolapinVisitor extends ConsumerWidget {
   SolapinVisitor({Key? key}) : super(key: key);
-  final solapinController = TextEditingController();
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final double errorFont = Responsive.isMobile(context) ? 10.0 : 15.0;
+    final solapinController = watch(solapinControllerProvider);
+
     return TextFormWidget(
+      controller: solapinController.state,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      nameController: solapinController,
       errorFont: errorFont,
       labelText: '# Solapín',
       validator: (value) => validateName(value),

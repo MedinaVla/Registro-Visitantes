@@ -1,12 +1,14 @@
 import 'package:admin/src/core/shared_widgets/responsive.dart';
 import 'package:admin/src/core/styles.dart';
+import 'package:admin/src/features/registro/logic/registro_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'buttons/buttons.dart';
 import 'dropdown/dropdown.dart';
 import 'text_form/text_form.dart';
 
-class VisitorForm extends StatelessWidget {
+class VisitorForm extends ConsumerWidget {
   VisitorForm({
     Key? key,
   }) : super(key: key);
@@ -14,8 +16,9 @@ class VisitorForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     final Size size = MediaQuery.of(context).size;
+    final file = watch(fileStreamProvider.stream);
 
     return Form(
       key: _formKey,

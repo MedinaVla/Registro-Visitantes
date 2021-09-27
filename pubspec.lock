@@ -192,6 +192,13 @@ packages:
       url: "git://github.com/NoScopeDevs/errors"
     source: git
     version: "2.0.0"
+  external_asset_bundle:
+    dependency: "direct main"
+    description:
+      name: external_asset_bundle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -321,6 +328,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   io:
     dependency: transitive
     description:

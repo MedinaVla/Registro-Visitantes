@@ -7,15 +7,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NameVisitor extends ConsumerWidget {
   NameVisitor({Key? key}) : super(key: key);
-  final name = TextEditingController();
-
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final double errorFont = Responsive.isMobile(context) ? 10.0 : 15.0;
     final switchValue = watch(swtichProvider);
+    final nameController = watch(nameControllerProvider);
+
     return TextFormWidget(
+      controller: nameController.state,
       switchValue: !switchValue.state,
-      nameController: name,
       errorFont: errorFont,
       labelText: 'Nombre',
       validator: (value) => validateName(value),

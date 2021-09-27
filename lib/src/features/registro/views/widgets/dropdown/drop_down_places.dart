@@ -16,10 +16,10 @@ class DropDownPlaces extends ConsumerWidget {
     return state.when(
       data: (places) => places.isEmpty
           ? Center(
-              child: Text(
-              'Ha ocurrido un error al conectarse con la base de datos',
-              style: TextStyle(fontSize: 30),
-            ))
+              child: SelectPlaces(
+                places: ['No existe areas'],
+              ),
+            )
           : SelectPlaces(
               places: places.map((e) => e).toSet().toList(),
             ),

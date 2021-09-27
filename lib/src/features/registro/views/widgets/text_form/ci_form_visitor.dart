@@ -9,15 +9,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // badge_outlined
 class CiVisitor extends ConsumerWidget {
   CiVisitor({Key? key}) : super(key: key);
-  final ciController = TextEditingController();
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final double errorFont = Responsive.isMobile(context) ? 10.0 : 15.0;
     final switchValue = watch(swtichProvider);
+    final ciController = watch(ciControllerProvider);
+
     return TextFormWidget(
+      controller: ciController.state,
       switchValue: !switchValue.state,
-      nameController: ciController,
       errorFont: errorFont,
       labelText: 'CI',
       validator: (value) => validateName(value),

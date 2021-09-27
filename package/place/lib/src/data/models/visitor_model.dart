@@ -6,7 +6,7 @@ part 'visitor_model.g.dart';
 @JsonSerializable()
 class VisitorModel implements Visitor {
   VisitorModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.spell,
     required this.ci,
@@ -19,7 +19,7 @@ class VisitorModel implements Visitor {
     required this.timeOnVisit,
   }) : super();
 
-  final int id;
+  final int? id;
   final String name;
   final String spell;
   final int ci;

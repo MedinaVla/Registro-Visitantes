@@ -7,7 +7,8 @@ class TextFormWidget extends StatelessWidget {
     this.switchValue = false,
     this.inputFormatters,
     this.obscureText = false,
-    required this.nameController,
+    this.onChanged,
+    this.controller,
     required this.errorFont,
     required this.labelText,
     required this.validator,
@@ -16,7 +17,6 @@ class TextFormWidget extends StatelessWidget {
   }) : super(key: key);
 
   final bool switchValue;
-  final TextEditingController nameController;
   final double errorFont;
   final String labelText;
   final FormFieldValidator<String>? validator;
@@ -24,13 +24,16 @@ class TextFormWidget extends StatelessWidget {
   final int? maxLength;
   final List<TextInputFormatter>? inputFormatters;
   final bool obscureText;
+  final ValueChanged<String>? onChanged;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        controller: controller,
+        onChanged: onChanged,
         readOnly: switchValue,
         obscureText: obscureText,
-        controller: nameController,
         textInputAction: TextInputAction.next,
         validator: validator,
         maxLength: maxLength,
