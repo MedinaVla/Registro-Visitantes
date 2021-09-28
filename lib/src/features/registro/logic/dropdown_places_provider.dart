@@ -47,7 +47,3 @@ final worker = Provider<String>((ref) {
         error: (_, __) => 'Error',
       );
 });
-
-// Valores a mostrar en el AppDropdownInput
-
-
