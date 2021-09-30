@@ -1,5 +1,6 @@
 import 'package:admin/src/core/shared_widgets/select_widget.dart';
-import 'package:admin/src/features/registro/logic/dropdown_places_provider.dart';
+import 'package:admin/src/features/registro/logic/select_places/select_places_provider.dart';
+import 'package:admin/src/features/registro/logic/select_workers/select_workers_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

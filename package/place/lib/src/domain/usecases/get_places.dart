@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+import 'package:errors/errors.dart';
 import 'package:place/src/domain/entities/place_to_go.dart';
 import 'package:place/src/domain/repositories/iplace_repository.dart';
 
@@ -7,5 +9,6 @@ class GetPlaces {
   final IPlaceRepository _repository;
 
   //Callable class method
-  Future<List<PlaceToGo>> call() async => _repository.getPlaces();
+  Future<Either<Failure, List<PlaceToGo>>> call() async =>
+      _repository.getPlaces();
 }

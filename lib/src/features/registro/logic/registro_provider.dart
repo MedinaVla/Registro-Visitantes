@@ -7,8 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:place/place.dart';
 
-import 'dropdown_places_provider.dart';
+// import 'dropdown_places_provider.dart';
 import 'registro_state.dart';
+import 'select_places/select_places_provider.dart';
+import 'select_workers/select_workers_provider.dart';
 
 export 'registro_state.dart';
 
@@ -32,6 +34,7 @@ final insertVisitorProvider = Provider<InsertVisitor>((ref) {
   return InsertVisitor(repository: repository, visitor: visitor.state);
 });
 
+///Switch Provider for Button
 final swtichProvider = StateProvider((ref) => false);
 
 final visitorStateProvider = StateProvider<VisitorModel>((ref) {
@@ -76,6 +79,7 @@ final barcodeStateProvider = StateProvider<String>((ref) => '');
 //   }
 // });
 
+/// Get Visitor Data from file with Stream
 final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
   final name = ref.watch(nameControllerProvider);
   final spell = ref.watch(spellControllerProvider);
@@ -111,3 +115,11 @@ final spellControllerProvider =
     StateProvider<TextEditingController>((ref) => TextEditingController());
 final solapinControllerProvider =
     StateProvider<TextEditingController>((ref) => TextEditingController());
+
+final cleanControllerProvider = Provider<void>((ref) {
+  print('LIMPIANDO');
+  ref.watch(nameControllerProvider).state.clear();
+  ref.watch(ciControllerProvider).state.clear();
+  ref.watch(spellControllerProvider).state.clear();
+  ref.watch(solapinControllerProvider).state.clear();
+});

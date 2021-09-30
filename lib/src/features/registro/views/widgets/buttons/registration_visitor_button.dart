@@ -1,7 +1,8 @@
 import 'package:admin/src/core/shared_widgets/responsive.dart';
 import 'package:admin/src/core/styles.dart';
 import 'package:admin/src/features/registro/logic/registro_provider.dart';
-import 'package:admin/src/features/registro/logic/dropdown_places_provider.dart';
+import 'package:admin/src/features/registro/logic/select_places/select_places_provider.dart';
+import 'package:admin/src/features/registro/logic/select_workers/select_workers_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:place/place.dart';
@@ -50,6 +51,7 @@ class SaveButtonForm extends ConsumerWidget {
           // If the form is valid, display a snackbar. In the real world,
           // you'd often call a server or save the information in a database.
           context.read(visitorNotifierProvider.notifier).insertVisitor();
+          _clearTextForm(name, spell, ci, solapin);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Guardado Correctamente')),
           );
@@ -65,5 +67,12 @@ class SaveButtonForm extends ConsumerWidget {
       icon: Icon(Icons.add),
       label: Text("Guardar"),
     );
+  }
+
+  _clearTextForm(name, spell, ci, solapin) {
+    name.state.clear();
+    spell.state.clear();
+    ci.state.clear();
+    solapin.state.clear();
   }
 }

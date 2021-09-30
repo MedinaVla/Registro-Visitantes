@@ -29,22 +29,22 @@ class PlaceRepository implements IPlaceRepository {
   }
 
   @override
-  Future<List<PlaceToGo>> getPlaces() async {
+  Future<Either<Failure, List<PlaceToGo>>> getPlaces() async {
     try {
       final place = await _localDBDataSource!.getPlaces();
-      return place;
+      return Right(place);
     } catch (e) {
-      throw ServerFailure();
+      throw Left(ServerFailure());
     }
   }
 
   @override
-  Future<List<String>> getPlacesNames() async {
+  Future<Either<Failure, List<String>>> getPlacesNames() async {
     try {
       final placesNames = await _localDBDataSource!.getPlacesNames();
-      return placesNames;
+      return Right(placesNames);
     } catch (e) {
-      throw ServerFailure();
+      throw Left(ServerFailure());
     }
   }
 

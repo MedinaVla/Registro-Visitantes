@@ -1,4 +1,4 @@
-import 'package:admin/src/features/registro/logic/dropdown_places_provider.dart';
+import 'package:admin/src/features/registro/logic/select_places/select_places_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,22 +11,12 @@ class DropDownPlaces extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final state = watch(getPlacesNamesProvider);
+    final places = watch(selectPlacesNotifier);
 
-    return state.when(
-      data: (places) => places.isEmpty
-          ? Center(
-              child: SelectPlaces(
-                places: ['No existe areas'],
-              ),
-            )
-          : SelectPlaces(
-              places: places.map((e) => e).toSet().toList(),
-            ),
-      loading: () => Text(''),
-      error: (Object error, StackTrace? stackTrace) {
-        return Text('');
-      },
-    );
+    return places.when(
+        initial: () => SelectPlaces(places: ['']),
+        data: (places) =>
+            SelectPlaces(places: places.map((e) => e).toSet().toList()),
+        error: (message) => SelectPlaces(places: [message.toString()]));
   }
 }

@@ -20,7 +20,13 @@ class _$SelectPlacesStateTearOff {
     return const _Initial();
   }
 
-  _Error error(String? message) {
+  _Data data(List<String> places) {
+    return _Data(
+      places,
+    );
+  }
+
+  _Error error([String? message]) {
     return _Error(
       message,
     );
@@ -35,12 +41,14 @@ mixin _$SelectPlacesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(List<String> places) data,
     required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(List<String> places)? data,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
@@ -48,12 +56,14 @@ mixin _$SelectPlacesState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Data value) data,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Data value)? data,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -115,6 +125,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(List<String> places) data,
     required TResult Function(String? message) error,
   }) {
     return initial();
@@ -124,6 +135,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(List<String> places)? data,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -137,6 +149,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Data value) data,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -146,6 +159,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Data value)? data,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -158,6 +172,122 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements SelectPlacesState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$DataCopyWith<$Res> {
+  factory _$DataCopyWith(_Data value, $Res Function(_Data) then) =
+      __$DataCopyWithImpl<$Res>;
+  $Res call({List<String> places});
+}
+
+/// @nodoc
+class __$DataCopyWithImpl<$Res> extends _$SelectPlacesStateCopyWithImpl<$Res>
+    implements _$DataCopyWith<$Res> {
+  __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
+      : super(_value, (v) => _then(v as _Data));
+
+  @override
+  _Data get _value => super._value as _Data;
+
+  @override
+  $Res call({
+    Object? places = freezed,
+  }) {
+    return _then(_Data(
+      places == freezed
+          ? _value.places
+          : places // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Data implements _Data {
+  const _$_Data(this.places);
+
+  @override
+  final List<String> places;
+
+  @override
+  String toString() {
+    return 'SelectPlacesState.data(places: $places)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Data &&
+            (identical(other.places, places) ||
+                const DeepCollectionEquality().equals(other.places, places)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(places);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DataCopyWith<_Data> get copyWith =>
+      __$DataCopyWithImpl<_Data>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(List<String> places) data,
+    required TResult Function(String? message) error,
+  }) {
+    return data(places);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(List<String> places)? data,
+    TResult Function(String? message)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(places);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Data value) data,
+    required TResult Function(_Error value) error,
+  }) {
+    return data(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Data value)? data,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Data implements SelectPlacesState {
+  const factory _Data(List<String> places) = _$_Data;
+
+  List<String> get places => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -192,7 +322,7 @@ class __$ErrorCopyWithImpl<$Res> extends _$SelectPlacesStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error(this.message);
+  const _$_Error([this.message]);
 
   @override
   final String? message;
@@ -223,6 +353,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(List<String> places) data,
     required TResult Function(String? message) error,
   }) {
     return error(message);
@@ -232,6 +363,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(List<String> places)? data,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -245,6 +377,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Data value) data,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -254,6 +387,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Data value)? data,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -265,7 +399,7 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements SelectPlacesState {
-  const factory _Error(String? message) = _$_Error;
+  const factory _Error([String? message]) = _$_Error;
 
   String? get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)

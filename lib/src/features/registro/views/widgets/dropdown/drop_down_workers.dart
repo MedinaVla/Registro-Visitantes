@@ -1,6 +1,8 @@
-import 'package:admin/src/features/registro/logic/dropdown_places_provider.dart';
+import 'package:admin/src/features/registro/logic/select_places/select_places_provider.dart';
+import 'package:admin/src/features/registro/logic/select_workers/select_workers_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:place/place.dart';
 
 import 'select_workers.dart';
 
@@ -11,20 +13,19 @@ class DropDownWorkers extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final state = watch(getWorkersPlacesNamesProvider);
+    final state = watch(selectWorkersNotifer);
     final placeSelected = watch(selectPlacesProvider);
 
     return state.when(
-      data: (places) => places.isEmpty
-          ? SelectWorkers(places: ['No existe trabajadores'])
-          : SelectWorkers(
+        initial: () => SelectWorkers(places: ['']),
+        error: (error) => SelectWorkers(places: [error.toString()]),
+        data: (places) {
+          return SelectWorkers(
               places: places
                   .where((element) =>
                       element.namePlace.contains(placeSelected.state))
                   .map((e) => e.workerName)
-                  .toList()),
-      error: (Object error, StackTrace? stackTrace) => Text(''),
-      loading: () => Text(''),
-    );
+                  .toList());
+        });
   }
 }

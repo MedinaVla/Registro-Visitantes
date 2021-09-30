@@ -1,4 +1,8 @@
-N:Vladimir
-A:Medina Miguel
-CI:900506101
-FV:#####
+N:Vladimir
+
+A:Tabio Borrega
+
+CI:900506101
+
+FV:#####
+
