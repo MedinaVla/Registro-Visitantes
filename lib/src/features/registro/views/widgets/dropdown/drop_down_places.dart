@@ -17,6 +17,6 @@ class DropDownPlaces extends ConsumerWidget {
         initial: () => SelectPlaces(places: ['']),
         data: (places) =>
             SelectPlaces(places: places.map((e) => e).toSet().toList()),
-        error: (message) => SelectPlaces(places: [message.toString()]));
+        error: (message) => SelectPlaces(places: ['Error al cargar areas']));
   }
 }

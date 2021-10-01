@@ -18,7 +18,8 @@ class DropDownWorkers extends ConsumerWidget {
 
     return state.when(
         initial: () => SelectWorkers(places: ['']),
-        error: (error) => SelectWorkers(places: [error.toString()]),
+        error: (error) =>
+            SelectWorkers(places: ['Error al cargar trabajadores']),
         data: (places) {
           return SelectWorkers(
               places: places

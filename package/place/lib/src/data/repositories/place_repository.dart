@@ -32,6 +32,10 @@ class PlaceRepository implements IPlaceRepository {
   Future<Either<Failure, List<PlaceToGo>>> getPlaces() async {
     try {
       final place = await _localDBDataSource!.getPlaces();
+      if (place.isEmpty) {
+        return Left(ServerFailure());
+      }
+      print(place);
       return Right(place);
     } catch (e) {
       throw Left(ServerFailure());
@@ -42,6 +46,9 @@ class PlaceRepository implements IPlaceRepository {
   Future<Either<Failure, List<String>>> getPlacesNames() async {
     try {
       final placesNames = await _localDBDataSource!.getPlacesNames();
+      if (placesNames.isEmpty) {
+        return Left(ServerFailure());
+      }
       return Right(placesNames);
     } catch (e) {
       throw Left(ServerFailure());

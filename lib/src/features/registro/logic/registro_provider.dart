@@ -91,6 +91,7 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
     new Timer.periodic(oneSec, (Timer t) async {
       var externalAssetBundle = ExternalAssetBundle("assets/scanning_qrcode");
       var datos = await externalAssetBundle.loadString("barcode_result.txt");
+      print('switchValue==true');
       if (datos != barcode.state) {
         barcode.state = datos;
         LineSplitter ls = new LineSplitter();
@@ -98,9 +99,9 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
         name.state.text = lines[0].replaceAll("N:", "");
         spell.state.text = lines[2].replaceAll("A:", "");
         ci.state.text = lines[4].replaceAll("CI:", "");
+        print('CERRANDO');
       }
       ref.onDispose(() {
-        print('CERRANDO');
         t.cancel();
       });
     });
@@ -115,11 +116,3 @@ final spellControllerProvider =
     StateProvider<TextEditingController>((ref) => TextEditingController());
 final solapinControllerProvider =
     StateProvider<TextEditingController>((ref) => TextEditingController());
-
-final cleanControllerProvider = Provider<void>((ref) {
-  print('LIMPIANDO');
-  ref.watch(nameControllerProvider).state.clear();
-  ref.watch(ciControllerProvider).state.clear();
-  ref.watch(spellControllerProvider).state.clear();
-  ref.watch(solapinControllerProvider).state.clear();
-});
