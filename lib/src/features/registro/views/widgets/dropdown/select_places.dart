@@ -7,9 +7,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SelectPlaces extends ConsumerWidget {
   const SelectPlaces({
     Key? key,
+    this.colorSelected,
     required this.places,
   }) : super(key: key);
   final List<String> places;
+  final Color? colorSelected;
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -17,6 +19,7 @@ class SelectPlaces extends ConsumerWidget {
     final selectWorker = watch(selectWorkerProvider);
 
     return AppDropdownInput(
+      colorSelected: colorSelected,
       hintText: "Area:",
       options: places,
       value: selectPlace.state.isEmpty ? places.first : selectPlace.state,

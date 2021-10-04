@@ -5,6 +5,7 @@ import 'package:admin/src/features/registro/logic/registro_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wc_form_validators/wc_form_validators.dart';
 
 // badge_outlined
 class CiVisitor extends ConsumerWidget {
@@ -21,7 +22,7 @@ class CiVisitor extends ConsumerWidget {
       switchValue: !switchValue.state,
       errorFont: errorFont,
       labelText: 'CI',
-      validator: (value) => validateName(value),
+      validator: validateNumeber(),
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       iconValue: Icons.badge_outlined,
       maxLength: 11,

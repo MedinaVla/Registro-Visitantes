@@ -19,7 +19,7 @@ class SolapinVisitor extends ConsumerWidget {
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       errorFont: errorFont,
       labelText: '# Solapín',
-      validator: (value) => validateName(value),
+      validator: validateNumeber(),
       iconValue: Icons.credit_card_outlined,
       maxLength: 3,
     );

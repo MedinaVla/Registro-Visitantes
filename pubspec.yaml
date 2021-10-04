@@ -27,6 +27,7 @@ dependencies:
   json_annotation: any
   place:
     path: ./package/place
+  wc_form_validators: ^1.0.0
 
 dev_dependencies:
   build_runner: null

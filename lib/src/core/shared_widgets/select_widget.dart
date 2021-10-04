@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppDropdownInput<T> extends StatelessWidget {
-  final String hintText;
-  final List<T> options;
-  final T value;
-  final Widget icon;
-  final String Function(T) getLabel;
-  final void Function(Object?) onChanged;
-  final void Function()? onTap;
-  final EdgeInsetsGeometry contentPadding;
-
   AppDropdownInput(
-      {this.hintText = 'Seleccione una opción',
+      {this.colorSelected = Colors.white,
+      this.hintText = 'Seleccione una opción',
       this.options = const [],
       this.onTap,
       required this.icon,
@@ -20,6 +12,16 @@ class AppDropdownInput<T> extends StatelessWidget {
       required this.onChanged,
       this.contentPadding =
           const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0)});
+
+  final String hintText;
+  final List<T> options;
+  final T value;
+  final Widget icon;
+  final String Function(T) getLabel;
+  final void Function(Object?) onChanged;
+  final void Function()? onTap;
+  final EdgeInsetsGeometry contentPadding;
+  final Color? colorSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,11 @@ class AppDropdownInput<T> extends StatelessWidget {
               items: options.map((T value) {
                 return DropdownMenuItem<T>(
                   value: value,
-                  child: Center(child: Text(getLabel(value))),
+                  child: Center(
+                      child: Text(
+                    getLabel(value),
+                    style: TextStyle(color: colorSelected),
+                  )),
                 );
               }).toList(),
             ),

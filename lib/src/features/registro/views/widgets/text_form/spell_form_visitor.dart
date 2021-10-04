@@ -19,7 +19,7 @@ class SpellVisitor extends ConsumerWidget {
       switchValue: !switchValue.state,
       errorFont: errorFont,
       labelText: 'Apellidos',
-      validator: (value) => validateName(value),
+      validator: validateSpell(),
       iconValue: Icons.supervisor_account_outlined,
       maxLength: 60,
     );

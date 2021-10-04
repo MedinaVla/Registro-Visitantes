@@ -35,7 +35,6 @@ class PlaceRepository implements IPlaceRepository {
       if (place.isEmpty) {
         return Left(ServerFailure());
       }
-      print(place);
       return Right(place);
     } catch (e) {
       throw Left(ServerFailure());

@@ -30,7 +30,6 @@ final registroProvider = Provider<IPlaceRepository>(
 final insertVisitorProvider = Provider<InsertVisitor>((ref) {
   final repository = ref.watch(registroProvider);
   final visitor = ref.watch(visitorStateProvider);
-  print(visitor.state);
   return InsertVisitor(repository: repository, visitor: visitor.state);
 });
 
@@ -49,7 +48,6 @@ final visitorStateProvider = StateProvider<VisitorModel>((ref) {
       timeInVisit: DateFormat('kk:mm').format(DateTime.now()),
       dateOnVisit: '',
       timeOnVisit: '');
-  print('VISITOR  $vi');
   return vi;
 });
 
@@ -91,8 +89,7 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
     new Timer.periodic(oneSec, (Timer t) async {
       var externalAssetBundle = ExternalAssetBundle("assets/scanning_qrcode");
       var datos = await externalAssetBundle.loadString("barcode_result.txt");
-      print('switchValue==true');
-      if (datos != barcode.state || name.state.text.isEmpty) {
+      if (datos != barcode.state && name.state.text.isEmpty) {
         barcode.state = datos;
         LineSplitter ls = new LineSplitter();
         List<String> lines = ls.convert(datos);

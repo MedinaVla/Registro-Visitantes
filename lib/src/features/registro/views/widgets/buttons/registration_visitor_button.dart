@@ -32,12 +32,13 @@ class SaveButtonForm extends ConsumerWidget {
         ),
       ),
       onPressed: () {
-        print('El area es : ${namePlace.state}');
+        // print('El area es : ${name.state.text}');
+        // print(formKey.currentState.save());
+        // print(formKey.currentState!.validate());
         if (formKey.currentState!.validate() &&
             namePlace.state.isNotEmpty &&
             nameWorker.state.isNotEmpty) {
           final visitor = watch(visitorStateProvider);
-          print('El area es : ${namePlace.state}');
 
           visitor.state = VisitorModel(
               name: name.state.text,
@@ -58,12 +59,12 @@ class SaveButtonForm extends ConsumerWidget {
             const SnackBar(content: Text('Guardado Correctamente')),
           );
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Revise los campos'),
-              backgroundColor: Colors.red,
-            ),
-          );
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   const SnackBar(
+          //     content: Text('Revise los campos'),
+          //     backgroundColor: Colors.red,
+          //   ),
+          // );
         }
       },
       icon: Icon(Icons.add),

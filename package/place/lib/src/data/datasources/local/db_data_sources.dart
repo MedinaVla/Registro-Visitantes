@@ -15,7 +15,6 @@ class DBDatasources implements LocalDBDataSources {
     List<PlaceToGo> result = await getPlaces();
 
     result.forEach((element) {
-      print(element);
       placesNames.add(element.namePlace);
     });
 
