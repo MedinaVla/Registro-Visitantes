@@ -32,10 +32,12 @@ class SaveButtonForm extends ConsumerWidget {
         ),
       ),
       onPressed: () {
+        print('El area es : ${namePlace.state}');
         if (formKey.currentState!.validate() &&
-            namePlace.state != 'No existe areas' &&
-            nameWorker.state != 'No existe trabajadores') {
+            namePlace.state.isNotEmpty &&
+            nameWorker.state.isNotEmpty) {
           final visitor = watch(visitorStateProvider);
+          print('El area es : ${namePlace.state}');
 
           visitor.state = VisitorModel(
               name: name.state.text,

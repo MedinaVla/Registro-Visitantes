@@ -92,7 +92,7 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
       var externalAssetBundle = ExternalAssetBundle("assets/scanning_qrcode");
       var datos = await externalAssetBundle.loadString("barcode_result.txt");
       print('switchValue==true');
-      if (datos != barcode.state) {
+      if (datos != barcode.state || name.state.text.isEmpty) {
         barcode.state = datos;
         LineSplitter ls = new LineSplitter();
         List<String> lines = ls.convert(datos);
