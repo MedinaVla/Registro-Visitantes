@@ -8,4 +8,5 @@ export 'repositories/iplace_repository.dart';
 export 'usecases/upload_places.dart';
 export 'usecases/get_places.dart';
 export 'usecases/get_places_names.dart';
+export 'usecases/get_visitors.dart';
 export 'usecases/insert_visitor.dart';

@@ -5,7 +5,7 @@ import 'package:admin/src/core/styles.dart';
 import 'package:admin/src/features/listar/views/widgets/header.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/recent_files.dart';
+import 'widgets/show_visitors.dart';
 import 'widgets/storage_details.dart';
 
 // import 'components/storage_details.dart';
@@ -29,7 +29,7 @@ class ListarPage extends StatelessWidget {
                     children: [
                       // MyFiles(),
                       SizedBox(height: defaultPadding),
-                      RecentFiles(),
+                      ShowVisitors(),
                       // if (Responsive.isMobile(context))
                       //   SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),
