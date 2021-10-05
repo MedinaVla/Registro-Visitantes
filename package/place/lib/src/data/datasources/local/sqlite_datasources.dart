@@ -77,6 +77,12 @@ class DatabaseHandler {
     return queryResult.map((e) => PlaceToGo.fromMap(e)).toList();
   }
 
+  Future<List<Visitor>> getVisitors() async {
+    final Database? db = await database;
+    final List<Map<String, Object?>> queryResult = await db!.query('visitors');
+    return queryResult.map((e) => VisitorModel.fromJson(e)).toList();
+  }
+
   Future<void> deleteAllPlaces() async {
     final Database? db = await database;
     await db!.delete('places');

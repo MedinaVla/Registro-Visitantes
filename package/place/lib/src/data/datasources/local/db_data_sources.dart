@@ -37,4 +37,9 @@ class DBDatasources implements LocalDBDataSources {
   Future<String> insertVisitor(VisitorModel visitor) async {
     return await DatabaseHandler.instance.insertVisitor(visitor).toString();
   }
+
+  @override
+  Future<List<Visitor>> getVisitors() async {
+    return await DatabaseHandler.instance.getVisitors();
+  }
 }

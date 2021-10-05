@@ -77,4 +77,16 @@ class PlaceRepository implements IPlaceRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<Visitor>>> getVisitors() async {
+    try {
+      final result = await _localDBDataSource!.getVisitors();
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
 }
