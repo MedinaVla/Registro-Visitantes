@@ -23,6 +23,14 @@ class SaveButtonForm extends ConsumerWidget {
     final nameWorker = watch(selectWorkerProvider);
     final dateInVisit = DateFormat('dd-MM-yyyy').format(DateTime.now());
     final timeInVisit = DateFormat('kk:mm').format(DateTime.now());
+    final placeSelected = watch(selectPlacesProvider);
+    final state = watch(selectWorkersNotifer);
+    final listPlaces = state.maybeWhen(
+        data: (places) => places
+            .where((element) => element.namePlace.contains(placeSelected.state))
+            .map((e) => e.workerName)
+            .toList(),
+        orElse: () {});
 
     return ElevatedButton.icon(
       style: TextButton.styleFrom(
@@ -32,12 +40,10 @@ class SaveButtonForm extends ConsumerWidget {
         ),
       ),
       onPressed: () {
-        // print('El area es : ${name.state.text}');
-        // print(formKey.currentState.save());
-        // print(formKey.currentState!.validate());
-        if (formKey.currentState!.validate() &&
-            namePlace.state.isNotEmpty &&
-            nameWorker.state.isNotEmpty) {
+        nameWorker.state =
+            nameWorker.state.isEmpty ? listPlaces!.first : nameWorker.state;
+
+        if (formKey.currentState!.validate()) {
           final visitor = watch(visitorStateProvider);
 
           visitor.state = VisitorModel(

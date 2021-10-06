@@ -9,7 +9,7 @@ part 'visitor_state_notifier.dart';
 
 /// Provider to use the VisitorStateNotifier
 final visitorNotifierProvider =
-    StateNotifierProvider<VisitorNotifier, VisitorState>(
+    StateNotifierProvider.autoDispose<VisitorNotifier, VisitorState>(
   (ref) => VisitorNotifier(visitors: ref.watch(_getVisitorsProvider)),
 );
 

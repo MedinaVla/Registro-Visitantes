@@ -22,9 +22,17 @@ final _getPlacesProvider = Provider<GetPlaces>((ref) {
 });
 
 /// Set Selected Worker
-final selectWorkerProvider = StateProvider<String>((ref) => ref
-    .watch(selectWorkersNotifer)
-    .when(
+final selectWorkerProvider = StateProvider<String>((ref) {
+  return ref.watch(selectWorkersNotifer).when(
         initial: () => '',
-        data: (workers) => workers.first.workerName,
-        error: (_) => ''));
+        data: (workers) {
+          print(workers.first.workerName);
+          return workers.first.workerName;
+        },
+        error: (_) => '',
+      );
+});
+
+final selectedDefaultWorkerProvider = StateProvider<String>((ref) {
+  return '';
+});

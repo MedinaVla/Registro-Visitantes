@@ -23,5 +23,8 @@ final _getPlacesNamesProvider = Provider<GetPlacesNames>((ref) {
 
 final selectPlacesProvider = StateProvider<String>(
   (ref) => ref.watch(selectPlacesNotifier).when(
-      initial: () => '', data: (places) => places.first, error: (_) => ''),
+        initial: () => '',
+        data: (places) => places.first,
+        error: (_) => '',
+      ),
 );

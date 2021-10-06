@@ -25,8 +25,10 @@ class SelectPlaces extends ConsumerWidget {
       value: selectPlace.state.isEmpty ? places.first : selectPlace.state,
       icon: Icon(Icons.place_outlined),
       onChanged: (value) {
+        ///Limpio el state del nombre del trabajador
         selectWorker.state = '';
 
+        ///Asingo el valor seleccionado al Place Name
         selectPlace.state = value.toString();
       },
       getLabel: (value) => value.toString(),
