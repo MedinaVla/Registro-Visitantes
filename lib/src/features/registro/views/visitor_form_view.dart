@@ -20,7 +20,7 @@ class VisitorFormView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(width: double.infinity, child: VisitorForm()),
+          SizedBox(width: double.infinity, child: VisitorFormWidget()),
         ],
       ),
     );

@@ -4,7 +4,6 @@ import 'package:admin/src/core/utils/validartor.dart';
 import 'package:admin/src/features/registro/logic/registro_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wc_form_validators/wc_form_validators.dart';
 
 class NameVisitor extends ConsumerWidget {
   NameVisitor({Key? key}) : super(key: key);

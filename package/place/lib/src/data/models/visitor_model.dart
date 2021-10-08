@@ -36,6 +36,32 @@ class VisitorModel implements Visitor {
 
   Map<String, dynamic> toJson() => _$VisitorModelToJson(this);
 
+  VisitorModel copyWith(
+      {id,
+      name,
+      spell,
+      ci,
+      solapin,
+      namePlace,
+      nameWorker,
+      dateInVisit,
+      timeInVisit,
+      dateOnVisit,
+      timeOnVisit}) {
+    return VisitorModel(
+      name: name ?? this.name,
+      spell: spell ?? this.spell,
+      ci: ci ?? this.ci,
+      solapin: solapin ?? this.solapin,
+      namePlace: namePlace ?? this.namePlace,
+      nameWorker: nameWorker ?? this.nameWorker,
+      dateInVisit: dateInVisit ?? this.dateInVisit,
+      timeInVisit: timeInVisit ?? this.timeInVisit,
+      dateOnVisit: dateOnVisit ?? this.dateOnVisit,
+      timeOnVisit: timeOnVisit ?? this.timeOnVisit,
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,

@@ -1,7 +1,7 @@
 import 'package:admin/src/admin_visitor/providers.dart';
 import 'package:admin/src/features/configuration/views/configuration_page.dart';
 import 'package:admin/src/features/listar/views/listar_page.dart';
-import 'package:admin/src/features/registro/views/dashboard_page.dart';
+import 'package:admin/src/features/registro/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,7 +9,7 @@ import 'side_menu.dart';
 
 class MainScreen extends ConsumerWidget {
   final List<Widget> _pages = [
-    DashboardPage(),
+    RegistrationPage(),
     ListarPage(),
     ListarPage(),
     ConfigurationPage(),

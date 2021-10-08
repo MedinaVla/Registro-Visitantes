@@ -26,7 +26,6 @@ final selectWorkerProvider = StateProvider<String>((ref) {
   return ref.watch(selectWorkersNotifer).when(
         initial: () => '',
         data: (workers) {
-          print(workers.first.workerName);
           return workers.first.workerName;
         },
         error: (_) => '',

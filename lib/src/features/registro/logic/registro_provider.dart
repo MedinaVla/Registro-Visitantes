@@ -16,17 +16,24 @@ export 'registro_state.dart';
 
 part 'registro_state_notifier.dart';
 
-//  Provider to use the VisitorStateNotifier
+/// Provider que administra los datos y el state del visitante
 final visitorNotifierProvider =
     StateNotifierProvider<VisitorNotifier, RegistroState>(
-  (ref) => VisitorNotifier(visitor: ref.watch(insertVisitorProvider)),
+  (ref) => VisitorNotifier(
+      name: ref.watch(nameControllerProvider),
+      spell: ref.watch(spellControllerProvider),
+      ci: ref.watch(ciControllerProvider),
+      solapin: ref.watch(solapinControllerProvider),
+      useCasesInsertVisitor: ref.watch(insertVisitorProvider),
+      selectedWorker: ref.watch(selectWorkerProvider),
+      visitorState: ref.watch(visitorStateProvider)),
 );
 
 /// Repositories Providers
 final registroProvider = Provider<IPlaceRepository>(
     (ref) => PlaceRepository(localDBDataSource: DBDatasources()));
 
-/// Use Cases Providers
+/// Use Cases Insert Visitors
 final insertVisitorProvider = Provider<InsertVisitor>((ref) {
   final repository = ref.watch(registroProvider);
   final visitor = ref.watch(visitorStateProvider);
@@ -35,6 +42,18 @@ final insertVisitorProvider = Provider<InsertVisitor>((ref) {
 
 ///Switch Provider for Button
 final swtichProvider = StateProvider((ref) => false);
+
+final changeVisitorProvider =
+    Provider.family<void, List<String>?>((ref, listPlaces) {
+  print(listPlaces!.first.toString());
+  final visitorsChangeState = ref.watch(visitorStateProvider);
+  final selectedWorker = ref.watch(selectWorkerProvider);
+  selectedWorker.state = selectedWorker.state.isEmpty
+      ? listPlaces.first.toString()
+      : selectedWorker.state;
+  visitorsChangeState.state =
+      visitorsChangeState.state.copyWith(nameWorker: selectedWorker.state);
+});
 
 final visitorStateProvider = StateProvider<VisitorModel>((ref) {
   final vi = VisitorModel(
@@ -51,31 +70,8 @@ final visitorStateProvider = StateProvider<VisitorModel>((ref) {
   return vi;
 });
 
-// final nameStateProvider = StateProvider<String>((ref) => '');
-// final spellStateProvider = StateProvider<String>((ref) => '');
-// final ciStateProvider = StateProvider<int>((ref) => 0);
-// final solapinStateProvider = StateProvider<int>((ref) => 0);
+///Variable que guarda informacion del carnet escaneado y cargado por el file scanning_qrcode
 final barcodeStateProvider = StateProvider<String>((ref) => '');
-
-// final registroFileProvider = FutureProvider<void>((ref) async {
-//   final name = ref.watch(nameStateProvider);
-//   final spell = ref.watch(spellStateProvider);
-//   final ci = ref.watch(ciStateProvider);
-//   final barcode = ref.watch(barcodeStateProvider);
-//   // const oneSec = const Duration(seconds: 1);
-//   //  new Timer.periodic(oneSec, (Timer t) async {
-//   var externalAssetBundle = ExternalAssetBundle("assets/scanning_qrcode");
-//   var datos = await externalAssetBundle.loadString("barcode_result.txt");
-//   if (datos != barcode.state) {
-//     barcode.state = datos;
-//     LineSplitter ls = new LineSplitter();
-//     List<String> lines = ls.convert(datos);
-//     name.state = lines[0].replaceAll("N:", "");
-//     spell.state = lines[2].replaceAll("A:", "");
-//     ci.state = int.parse(lines[4].replaceAll("CI:", ""));
-//     print(ci.state);
-//   }
-// });
 
 /// Get Visitor Data from file with Stream
 final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {

@@ -4,8 +4,8 @@ import 'package:admin/src/features/registro/logic/select_workers/select_workers_
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SelectPlaces extends ConsumerWidget {
-  const SelectPlaces({
+class SelectPlacesWidget extends ConsumerWidget {
+  const SelectPlacesWidget({
     Key? key,
     this.colorSelected,
     required this.places,

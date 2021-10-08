@@ -8,8 +8,8 @@ import 'buttons/buttons.dart';
 import 'dropdown/dropdown.dart';
 import 'text_form/text_form.dart';
 
-class VisitorForm extends ConsumerWidget {
-  VisitorForm({
+class VisitorFormWidget extends ConsumerWidget {
+  VisitorFormWidget({
     Key? key,
   }) : super(key: key);
 
@@ -67,8 +67,8 @@ class VisitorForm extends ConsumerWidget {
           columnSelectForm(
             context,
             size,
-            textForm1: DropDownPlaces(),
-            textForm2: DropDownWorkers(),
+            textForm1: DropDownPlacesWidget(),
+            textForm2: DropDownWorkersWidget(),
           ),
         SizedBox(height: defaultPadding),
         if (!Responsive.isMobile(context)) SizedBox(height: defaultPadding),
@@ -76,14 +76,14 @@ class VisitorForm extends ConsumerWidget {
           rowTextForm(
             context,
             size,
-            textForm1: DropDownPlaces(),
-            textForm2: DropDownWorkers(),
+            textForm1: DropDownPlacesWidget(),
+            textForm2: DropDownWorkersWidget(),
           ),
         SizedBox(height: defaultPadding),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SaveButtonForm(formKey: _formKey),
+            SaveButtonFormWidget(formKey: _formKey),
             Container(
               width: size.width / 10,
             ),

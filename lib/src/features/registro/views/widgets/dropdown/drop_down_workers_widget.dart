@@ -2,12 +2,11 @@ import 'package:admin/src/features/registro/logic/select_places/select_places_pr
 import 'package:admin/src/features/registro/logic/select_workers/select_workers_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:place/place.dart';
 
-import 'select_workers.dart';
+import 'select_workers_widget.dart';
 
-class DropDownWorkers extends ConsumerWidget {
-  const DropDownWorkers({
+class DropDownWorkersWidget extends ConsumerWidget {
+  const DropDownWorkersWidget({
     Key? key,
   }) : super(key: key);
 
@@ -17,13 +16,13 @@ class DropDownWorkers extends ConsumerWidget {
     final placeSelected = watch(selectPlacesProvider);
 
     return state.when(
-        initial: () => SelectWorkers(places: ['']),
-        error: (error) => SelectWorkers(
+        initial: () => SelectWorkersWidget(places: ['']),
+        error: (error) => SelectWorkersWidget(
               places: ['Error al cargar trabajadores'],
               colorSelected: Colors.red,
             ),
         data: (places) {
-          return SelectWorkers(
+          return SelectWorkersWidget(
               places: places
                   .where((element) =>
                       element.namePlace.contains(placeSelected.state))

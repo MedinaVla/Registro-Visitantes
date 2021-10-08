@@ -2,10 +2,10 @@ import 'package:admin/src/features/registro/logic/select_places/select_places_pr
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'select_places.dart';
+import 'select_places_widget.dart';
 
-class DropDownPlaces extends ConsumerWidget {
-  const DropDownPlaces({
+class DropDownPlacesWidget extends ConsumerWidget {
+  const DropDownPlacesWidget({
     Key? key,
   }) : super(key: key);
 
@@ -14,10 +14,10 @@ class DropDownPlaces extends ConsumerWidget {
     final places = watch(selectPlacesNotifier);
 
     return places.when(
-        initial: () => SelectPlaces(places: ['']),
+        initial: () => SelectPlacesWidget(places: ['']),
         data: (places) =>
-            SelectPlaces(places: places.map((e) => e).toSet().toList()),
-        error: (message) => SelectPlaces(
+            SelectPlacesWidget(places: places.map((e) => e).toSet().toList()),
+        error: (message) => SelectPlacesWidget(
               places: ['Error al cargar areas'],
               colorSelected: Colors.red,
             ));

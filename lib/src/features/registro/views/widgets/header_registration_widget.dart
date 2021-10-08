@@ -1,15 +1,12 @@
 import 'package:admin/src/admin_visitor/providers.dart';
-import 'package:admin/src/core/colors.dart';
 import 'package:admin/src/core/shared_widgets/responsive.dart';
-import 'package:admin/src/core/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'buttons/buttons.dart';
 
-class HeaderDashBoard extends ConsumerWidget {
-  const HeaderDashBoard({
+class HeaderRegistrationWidget extends ConsumerWidget {
+  const HeaderRegistrationWidget({
     Key? key,
   }) : super(key: key);
 
@@ -42,7 +39,7 @@ class HeaderDashBoard extends ConsumerWidget {
             icon: Icon(Icons.menu),
             onPressed: watch(menuProvider).controlMenu,
           ),
-        SwitchHeaderDashboardButton(),
+        SwitchButtonHeaderWidget(),
       ],
     );
   }
