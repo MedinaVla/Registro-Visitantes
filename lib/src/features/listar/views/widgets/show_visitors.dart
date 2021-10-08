@@ -146,7 +146,7 @@ Widget dataTableVisitors(visitors) {
 
   return PaginatedDataTable(
     source: _data,
-    header: Text('My Products'),
+    header: Text('Visitantes'),
     columns: [
       DataColumn(label: Text('Nombre')),
       DataColumn(label: Text('Apellidos')),
@@ -155,25 +155,12 @@ Widget dataTableVisitors(visitors) {
       DataColumn(label: Text('Area')),
       DataColumn(label: Text('Trabajador')),
     ],
-    columnSpacing: 100,
-    horizontalMargin: 20,
-    rowsPerPage: 8,
+    columnSpacing: 0,
+    horizontalMargin: 40,
+    rowsPerPage: 10,
     showCheckboxColumn: false,
   );
 }
-
-// DataRow recentFileDataRow(Visitor visitor) {
-//   return DataRow(
-//     cells: [
-//       DataCell(Text(visitor.name)),
-//       DataCell(Text(visitor.spell)),
-//       DataCell(Text(visitor.ci.toString())),
-//       DataCell(Text(visitor.solapin.toString())),
-//       DataCell(Text(visitor.namePlace)),
-//       DataCell(Text(visitor.nameWorker)),
-//     ],
-//   );
-// }
 
 class MyData extends DataTableSource {
   MyData({required this.visitors});
@@ -183,6 +170,8 @@ class MyData extends DataTableSource {
   bool get isRowCountApproximate => false;
   int get rowCount => visitors.length;
   int get selectedRowCount => 0;
+
+  ///Get Rows of Visitors
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(visitors[index].name)),
