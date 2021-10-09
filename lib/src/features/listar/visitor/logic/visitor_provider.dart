@@ -18,7 +18,14 @@ final _visitorRepositoryProvider = Provider<IPlaceRepository>(
     (_) => PlaceRepository(localDBDataSource: DBDatasources()));
 
 /// Use Cases Providers
-final _getVisitorsProvider = Provider<GetVisitors>((ref) {
+final _getVisitorsProvider = Provider<GetVisitorsByDate>((ref) {
   final repository = ref.watch(_visitorRepositoryProvider);
-  return GetVisitors(repository: repository);
+  final dateSelected = ref.watch(dateSelectedSateProvider).state;
+  return GetVisitorsByDate(repository: repository, dateSelected: dateSelected);
 });
+
+final dateSelectedSateProvider = StateProvider<String>((ref) {
+  return '';
+});
+
+final searchStateProvider = StateProvider<String>((ref) => '');

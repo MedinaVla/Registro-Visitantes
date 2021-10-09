@@ -93,12 +93,8 @@
 import 'package:admin/src/core/colors.dart';
 import 'package:admin/src/core/styles.dart';
 import 'package:admin/src/features/listar/visitor/logic/visitor_provider.dart';
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-
-import 'recent_file_model.dart';
 
 class ShowVisitors extends ConsumerWidget {
   const ShowVisitors({
@@ -108,26 +104,19 @@ class ShowVisitors extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final allVisitors = watch(visitorNotifierProvider);
+    final StateController<String> search = watch(searchStateProvider);
     return Container(
       padding: EdgeInsets.all(defaultPadding),
-      // decoration: BoxDecoration(
-      //   color: secondaryColor,
-      //   borderRadius: const BorderRadius.all(Radius.circular(10)),
-      // ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Text(
-          //   "Recent Files",
-          //   style: Theme.of(context).textTheme.subtitle1,
-          // ),
           SizedBox(
             width: double.infinity,
             child: allVisitors.when(
               initial: () => Text(''),
               data: (visitors) => Theme(
                 data: Theme.of(context).copyWith(cardColor: secondaryColor),
-                child: dataTableVisitors(visitors),
+                child: dataTableVisitors(visitors, search),
               ),
               loading: () => Text(''),
               error: (error) => Text(
@@ -141,8 +130,14 @@ class ShowVisitors extends ConsumerWidget {
   }
 }
 
-Widget dataTableVisitors(visitors) {
-  DataTableSource _data = MyData(visitors: visitors);
+Widget dataTableVisitors(
+    List<Visitor> visitors, StateController<String> search) {
+  ///Filtro los nombres de los visitantes para mostrar en la tabla
+  final List<Visitor> filtredListVisitors = visitors
+      .where((element) =>
+          element.name.toLowerCase().contains(search.state.toLowerCase()))
+      .toList();
+  DataTableSource _data = MyData(visitors: filtredListVisitors);
 
   return PaginatedDataTable(
     source: _data,
@@ -154,6 +149,7 @@ Widget dataTableVisitors(visitors) {
       DataColumn(label: Text('Solapin')),
       DataColumn(label: Text('Area')),
       DataColumn(label: Text('Trabajador')),
+      DataColumn(label: Text('Fecha Entrada')),
     ],
     columnSpacing: 0,
     horizontalMargin: 40,
@@ -180,6 +176,7 @@ class MyData extends DataTableSource {
       DataCell(Text(visitors[index].solapin.toString())),
       DataCell(Text(visitors[index].namePlace)),
       DataCell(Text(visitors[index].nameWorker)),
+      DataCell(Text(visitors[index].dateInVisit)),
     ]);
   }
 }

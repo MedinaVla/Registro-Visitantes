@@ -40,7 +40,7 @@ final insertVisitorProvider =
 });
 
 ///Switch Provider for Button
-final swtichProvider = StateProvider((ref) => false);
+final swtichStateProvider = StateProvider((ref) => false);
 
 ///Provider that managment the state of Object Visitor
 ///to use in Use Cases InsertVisitor
@@ -79,7 +79,7 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
   final spell = ref.watch(spellControllerProvider);
   final ci = ref.watch(ciControllerProvider);
   final barcode = ref.watch(barcodeStateProvider);
-  final switchValue = ref.watch(swtichProvider);
+  final switchValue = ref.watch(swtichStateProvider);
   const oneSec = const Duration(seconds: 1);
   if (switchValue.state == false) {
     ///Cargo el archivo barcode_result cada segundo

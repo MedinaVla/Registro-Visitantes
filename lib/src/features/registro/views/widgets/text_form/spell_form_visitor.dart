@@ -11,7 +11,7 @@ class SpellVisitor extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final double errorFont = Responsive.isMobile(context) ? 10.0 : 15.0;
-    final switchValue = watch(swtichProvider);
+    final switchValue = watch(swtichStateProvider);
     final spellController = watch(spellControllerProvider);
 
     return TextFormWidget(

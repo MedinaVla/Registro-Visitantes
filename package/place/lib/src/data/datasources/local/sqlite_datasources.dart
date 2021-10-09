@@ -77,9 +77,17 @@ class DatabaseHandler {
     return queryResult.map((e) => PlaceToGo.fromMap(e)).toList();
   }
 
-  Future<List<VisitorModel>> getVisitors() async {
+  // Future<List<VisitorModel>> getVisitors() async {
+  //   final Database? db = await database;
+  //   final List<Map<String, Object?>> queryResult = await db!.query('visitors');
+  //   return queryResult.map((e) => VisitorModel.fromJson(e)).toList();
+  // }
+
+  Future<List<VisitorModel>> getVisitorsByDate(String dateSelected) async {
     final Database? db = await database;
-    final List<Map<String, Object?>> queryResult = await db!.query('visitors');
+    final List<Map<String, Object?>> queryResult = await db!.query('visitors',
+        where: "dateInVisit LIKE ?", whereArgs: ['%$dateSelected%']);
+
     return queryResult.map((e) => VisitorModel.fromJson(e)).toList();
   }
 

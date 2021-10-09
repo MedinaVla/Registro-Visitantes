@@ -7,7 +7,7 @@ class SwitchButtonHeaderWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final switchValue = watch(swtichProvider);
+    final switchValue = watch(swtichStateProvider);
 
     return Switch(
         value: switchValue.state,

@@ -4,13 +4,11 @@ part of 'visitor_provider.dart';
 class VisitorNotifier extends StateNotifier<VisitorState> {
   /// Base constructor expects StateNotifier use_cases to
   /// read its usecases and also defines inital state
-  VisitorNotifier({required GetVisitors visitors})
+  VisitorNotifier({required GetVisitorsByDate visitors})
       : _visitors = visitors,
-        super(VisitorState.initial()) {
-    getVisitors();
-  }
+        super(VisitorState.initial());
 
-  final GetVisitors _visitors;
+  final GetVisitorsByDate _visitors;
 
   ///Get all Visitors and send message if error
   Future<void> getVisitors() async {
