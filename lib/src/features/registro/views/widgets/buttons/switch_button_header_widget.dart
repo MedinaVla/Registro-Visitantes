@@ -12,7 +12,6 @@ class SwitchButtonHeaderWidget extends ConsumerWidget {
     return Switch(
         value: switchValue.state,
         onChanged: (bool value) {
-          // print(switchValue.state);
           switchValue.state = value;
 
           ///Limpio los datos del formulario Visitante
