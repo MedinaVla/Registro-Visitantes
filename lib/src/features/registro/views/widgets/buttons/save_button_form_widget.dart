@@ -69,10 +69,12 @@ class SaveButtonFormWidget extends ConsumerWidget {
     ///Si el formulario es valido guardo los datos
     if (formKey.currentState!.validate()) {
       // final visitor = watch(visitorStateProvider);
-      context.read(changeVisitorProvider(listPlaces));
+      print(listPlaces);
 
       ///Inserto los datos del visitante
-      context.read(visitorNotifierProvider.notifier).insertVisitor(listPlaces);
+      context
+          .read(visitorNotifierProvider(listPlaces).notifier)
+          .insertVisitor(listPlaces);
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

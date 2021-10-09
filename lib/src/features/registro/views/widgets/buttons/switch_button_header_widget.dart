@@ -16,9 +16,7 @@ class SwitchButtonHeaderWidget extends ConsumerWidget {
           switchValue.state = value;
 
           ///Limpio los datos del formulario Visitante
-          context
-              .read(visitorNotifierProvider.notifier)
-              .clearRegistrationForm();
+          context.read(clearProvider);
         });
   }
 }

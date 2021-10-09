@@ -9,8 +9,6 @@ class VisitorNotifier extends StateNotifier<RegistroState> {
       required StateController<TextEditingController> spell,
       required StateController<TextEditingController> ci,
       required StateController<TextEditingController> solapin,
-      required selectedWorker,
-      required visitorState,
       required InsertVisitor useCasesInsertVisitor,
       RegistroState? initialState})
       : _useCasesInsertVisitor = useCasesInsertVisitor,
@@ -18,8 +16,6 @@ class VisitorNotifier extends StateNotifier<RegistroState> {
         _spell = spell,
         _ci = ci,
         _solapin = solapin,
-        _selectedWorker = selectedWorker,
-        _visitorState = visitorState,
         super(
           initialState ?? RegistroState.initial(),
         );
@@ -29,8 +25,6 @@ class VisitorNotifier extends StateNotifier<RegistroState> {
   final StateController<TextEditingController> _spell;
   final StateController<TextEditingController> _ci;
   final StateController<TextEditingController> _solapin;
-  final _selectedWorker;
-  final _visitorState;
 
   ///Function that insertVisisitor show error
   Future<void> insertVisitor(listPlaces) async {
@@ -38,15 +32,6 @@ class VisitorNotifier extends StateNotifier<RegistroState> {
     ///entonces el nombre del trabajador sera el primero
     ///de la lista de trabajadores por area
     ///
-    print('----------------------------------------');
-    _selectedWorker.state = _selectedWorker.state.isEmpty
-        ? listPlaces!.first
-        : _selectedWorker.state;
-    print('----------------------------------------');
-
-    _visitorState.state =
-        _visitorState.state.copyWith(nameWorker: _selectedWorker.state);
-    print(_visitorState.state.nameWorker);
 
     final result = await _useCasesInsertVisitor();
 

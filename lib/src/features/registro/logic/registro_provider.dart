@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:place/place.dart';
 
-// import 'dropdown_places_provider.dart';
 import 'registro_state.dart';
 import 'select_places/select_places_provider.dart';
 import 'select_workers/select_workers_provider.dart';
@@ -18,15 +17,14 @@ part 'registro_state_notifier.dart';
 
 /// Provider que administra los datos y el state del visitante
 final visitorNotifierProvider =
-    StateNotifierProvider<VisitorNotifier, RegistroState>(
-  (ref) => VisitorNotifier(
-      name: ref.watch(nameControllerProvider),
-      spell: ref.watch(spellControllerProvider),
-      ci: ref.watch(ciControllerProvider),
-      solapin: ref.watch(solapinControllerProvider),
-      useCasesInsertVisitor: ref.watch(insertVisitorProvider),
-      selectedWorker: ref.watch(selectWorkerProvider),
-      visitorState: ref.watch(visitorStateProvider)),
+    StateNotifierProvider.family<VisitorNotifier, RegistroState, List<String>?>(
+  (ref, listPlaces) => VisitorNotifier(
+    name: ref.watch(nameControllerProvider),
+    spell: ref.watch(spellControllerProvider),
+    ci: ref.watch(ciControllerProvider),
+    solapin: ref.watch(solapinControllerProvider),
+    useCasesInsertVisitor: ref.watch(insertVisitorProvider(listPlaces)),
+  ),
 );
 
 /// Repositories Providers
@@ -34,35 +32,37 @@ final registroProvider = Provider<IPlaceRepository>(
     (ref) => PlaceRepository(localDBDataSource: DBDatasources()));
 
 /// Use Cases Insert Visitors
-final insertVisitorProvider = Provider<InsertVisitor>((ref) {
+final insertVisitorProvider =
+    Provider.family<InsertVisitor, List<String>?>((ref, listPlaces) {
   final repository = ref.watch(registroProvider);
-  final visitor = ref.watch(visitorStateProvider);
+  final visitor = ref.watch(visitorStateProvider(listPlaces));
   return InsertVisitor(repository: repository, visitor: visitor.state);
 });
 
 ///Switch Provider for Button
 final swtichProvider = StateProvider((ref) => false);
 
-final changeVisitorProvider =
-    Provider.family<void, List<String>?>((ref, listPlaces) {
-  print(listPlaces!.first.toString());
-  final visitorsChangeState = ref.watch(visitorStateProvider);
+///Provider that managment the state of Object Visitor
+///to use in Use Cases InsertVisitor
+final visitorStateProvider =
+    StateProvider.family<VisitorModel, List<String>?>((ref, listPlaces) {
+  String name = '';
   final selectedWorker = ref.watch(selectWorkerProvider);
-  selectedWorker.state = selectedWorker.state.isEmpty
-      ? listPlaces.first.toString()
-      : selectedWorker.state;
-  visitorsChangeState.state =
-      visitorsChangeState.state.copyWith(nameWorker: selectedWorker.state);
-});
 
-final visitorStateProvider = StateProvider<VisitorModel>((ref) {
+  /// Si el selectedWorker es default le asigno el valor del primer trabajador segun el area
+  if (listPlaces!.isNotEmpty) {
+    name = selectedWorker.state.isEmpty
+        ? listPlaces.first.toString()
+        : selectedWorker.state;
+  }
+
   final vi = VisitorModel(
       name: ref.watch(nameControllerProvider).state.text,
       spell: ref.watch(spellControllerProvider).state.text,
       ci: int.parse(ref.watch(ciControllerProvider).state.text),
       solapin: int.parse(ref.watch(solapinControllerProvider).state.text),
       namePlace: ref.watch(selectPlacesProvider).state,
-      nameWorker: ref.watch(selectWorkerProvider).state,
+      nameWorker: name,
       dateInVisit: DateFormat('dd-MM-yyyy').format(DateTime.now()),
       timeInVisit: DateFormat('kk:mm').format(DateTime.now()),
       dateOnVisit: '',
@@ -82,17 +82,24 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
   final switchValue = ref.watch(swtichProvider);
   const oneSec = const Duration(seconds: 1);
   if (switchValue.state == false) {
+    ///Cargo el archivo barcode_result cada segundo
+    ///si es diferente asigno los valores al formulario
+    ///en caso de que ocurra un dispose se cancela el Timer
     new Timer.periodic(oneSec, (Timer t) async {
       var externalAssetBundle = ExternalAssetBundle("assets/scanning_qrcode");
       var datos = await externalAssetBundle.loadString("barcode_result.txt");
       if (datos != barcode.state && name.state.text.isEmpty) {
         barcode.state = datos;
+
+        /// Variable that convert datos in line splitter
         LineSplitter ls = new LineSplitter();
         List<String> lines = ls.convert(datos);
+
+        ///Asigno los valores nombre, apellidos y CI
         name.state.text = lines[0].replaceAll("N:", "");
         spell.state.text = lines[2].replaceAll("A:", "");
         ci.state.text = lines[4].replaceAll("CI:", "");
-        print('CERRANDO');
+        print('Archivo cargado correctamente');
       }
       ref.onDispose(() {
         t.cancel();
@@ -101,6 +108,7 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
   }
 });
 
+///TextEditingController of Form Registration Visitors
 final nameControllerProvider =
     StateProvider<TextEditingController>((ref) => TextEditingController());
 final ciControllerProvider =
@@ -109,3 +117,11 @@ final spellControllerProvider =
     StateProvider<TextEditingController>((ref) => TextEditingController());
 final solapinControllerProvider =
     StateProvider<TextEditingController>((ref) => TextEditingController());
+
+///Clean textFormField of Visitors Registration
+final clearProvider = Provider<void>((ref) {
+  ref.watch(nameControllerProvider).state.clear();
+  ref.watch(spellControllerProvider).state.clear();
+  ref.watch(ciControllerProvider).state.clear();
+  ref.watch(solapinControllerProvider).state.clear();
+});
