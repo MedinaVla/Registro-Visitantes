@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'visitor_state.dart';
 import 'package:place/place.dart';

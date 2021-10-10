@@ -79,6 +79,18 @@ class PlaceRepository implements IPlaceRepository {
   }
 
   @override
+  Future<Either<Failure, String>> updateVisitor(VisitorModel visitor) async {
+    try {
+      final message = await _localDBDataSource!.insertVisitor(visitor);
+      return Right(message);
+    } on ServerException {
+      return Left(ServerFailure());
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, List<Visitor>>> getVisitorsByDate(
       String dateSelected) async {
     try {

@@ -8,5 +8,6 @@ abstract class IPlaceRepository {
   Future<Either<Failure, List<String>>> getWorkersNames();
   Future<Either<Failure, String>> uploadPlaces();
   Future<Either<Failure, String>> insertVisitor(VisitorModel visitor);
+  Future<Either<Failure, String>> updateVisitor(VisitorModel visitor);
   Future<Either<Failure, List<Visitor>>> getVisitorsByDate(String date);
 }

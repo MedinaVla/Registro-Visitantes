@@ -95,4 +95,25 @@ class DatabaseHandler {
     final Database? db = await database;
     await db!.delete('places');
   }
+
+  Future<void> updateVisitante(VisitorModel visitorModel) async {
+    // var nowDate = DateTime.now();
+    // var salida = DateFormat('kk:mm').format(DateTime.now());
+    // Visitante updateVisitante = Visitante(
+    //     id: visitante.id,
+    //     name: visitante.name,
+    //     spell: visitante.spell,
+    //     ci: visitante.ci,
+    //     solapin: visitante.solapin,
+    //     place: visitante.place,
+    //     worker: visitante.worker,
+    //     fecha: visitante.fecha,
+    //     entrada: visitante.entrada,
+    //     salida: salida);
+
+    final Database? db = await database;
+
+    // await db!.update('visitantes', updateVisitante.toMap(),
+    //     where: 'id=?', whereArgs: [updateVisitante.id]);
+  }
 }
