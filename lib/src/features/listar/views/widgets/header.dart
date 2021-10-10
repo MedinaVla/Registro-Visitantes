@@ -68,7 +68,6 @@ class ProfileCard extends StatelessWidget {
             locale: Locale("es"),
           ).then((date) {
             if (date != null) {
-              print(date);
               dateSelected.state = DateFormat('MM-yyyy').format(date);
               context.read(visitorNotifierProvider.notifier).getVisitors();
             }

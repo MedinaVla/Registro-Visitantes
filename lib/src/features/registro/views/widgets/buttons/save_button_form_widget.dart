@@ -20,6 +20,11 @@ class SaveButtonFormWidget extends ConsumerWidget {
 
     final placeSelected = watch(selectPlacesProvider);
     final state = watch(selectWorkersNotifer);
+    final switchValue = watch(swtichStateProvider);
+    final name = watch(nameControllerProvider);
+    final spell = watch(spellControllerProvider);
+    final ci = watch(ciControllerProvider);
+    final solapin = watch(solapinControllerProvider);
 
     ///Obtengo la Lista de los trabajadores que estan por defecto asignados al Selected Worker
     final listPlacesWorkerName = state.maybeWhen(
@@ -39,25 +44,40 @@ class SaveButtonFormWidget extends ConsumerWidget {
       icon: Icon(Icons.add),
       label: Text("Guardar"),
       onPressed: () => _registrationButton(
-        context: context,
-        watch: watch,
-        listPlaces: listPlacesWorkerName,
-      ),
+          context: context,
+          watch: watch,
+          listPlaces: listPlacesWorkerName,
+          switchValue: switchValue,
+          name: name,
+          spell: spell,
+          ci: ci,
+          solapin: solapin),
     );
   }
 
   ///Function para guardar el Visitador
-  _registrationButton({
-    required BuildContext context,
-    required ScopedReader watch,
-    required List<String>? listPlaces,
-  }) {
+  _registrationButton(
+      {required BuildContext context,
+      required ScopedReader watch,
+      required List<String>? listPlaces,
+      required switchValue,
+      required name,
+      required spell,
+      required ci,
+      required solapin}) {
     ///Si el formulario es valido guardo los datos
     if (formKey.currentState!.validate()) {
       ///Inserto los datos del visitante
+
       context
           .read(visitorNotifierProvider(listPlaces).notifier)
-          .insertVisitor(listPlaces);
+          .insertVisitor();
+      switchValue.state = false;
+      // context.read(clearProvider);
+      name.state.clear();
+      spell.state.clear();
+      ci.state.clear();
+      solapin.state.clear();
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

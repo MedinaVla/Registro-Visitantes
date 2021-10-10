@@ -12,6 +12,7 @@ class UpdateVisitor {
   final IPlaceRepository _repository;
   final VisitorModel _visitor;
 
-  Future<Either<Failure, String>> call() async =>
-      _repository.updateVisitor(_visitor);
+  Future<Either<Failure, String>> call() async {
+    return _repository.updateVisitor(_visitor);
+  }
 }

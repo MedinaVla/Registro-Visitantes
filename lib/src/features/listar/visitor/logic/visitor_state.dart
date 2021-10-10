@@ -13,6 +13,7 @@ abstract class VisitorState with _$VisitorState {
 
   /// Data is loading state
   const factory VisitorState.loading() = _Loading;
+  const factory VisitorState.updated() = _Updated;
 
   /// Error when loading data state
   const factory VisitorState.error([String? message]) = _Error;

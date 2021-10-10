@@ -30,6 +30,10 @@ class _$VisitorStateTearOff {
     return const _Loading();
   }
 
+  _Updated updated() {
+    return const _Updated();
+  }
+
   _Error error([String? message]) {
     return _Error(
       message,
@@ -47,6 +51,7 @@ mixin _$VisitorState {
     required TResult Function() initial,
     required TResult Function(List<Visitor> visitors) data,
     required TResult Function() loading,
+    required TResult Function() updated,
     required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +60,7 @@ mixin _$VisitorState {
     TResult Function()? initial,
     TResult Function(List<Visitor> visitors)? data,
     TResult Function()? loading,
+    TResult Function()? updated,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
@@ -64,6 +70,7 @@ mixin _$VisitorState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Data value) data,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Updated value) updated,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +79,7 @@ mixin _$VisitorState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Data value)? data,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Updated value)? updated,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -134,6 +142,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function(List<Visitor> visitors) data,
     required TResult Function() loading,
+    required TResult Function() updated,
     required TResult Function(String? message) error,
   }) {
     return initial();
@@ -145,6 +154,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function(List<Visitor> visitors)? data,
     TResult Function()? loading,
+    TResult Function()? updated,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -160,6 +170,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Data value) data,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Updated value) updated,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -171,6 +182,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Data value)? data,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Updated value)? updated,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -251,6 +263,7 @@ class _$_Data implements _Data {
     required TResult Function() initial,
     required TResult Function(List<Visitor> visitors) data,
     required TResult Function() loading,
+    required TResult Function() updated,
     required TResult Function(String? message) error,
   }) {
     return data(visitors);
@@ -262,6 +275,7 @@ class _$_Data implements _Data {
     TResult Function()? initial,
     TResult Function(List<Visitor> visitors)? data,
     TResult Function()? loading,
+    TResult Function()? updated,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -277,6 +291,7 @@ class _$_Data implements _Data {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Data value) data,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Updated value) updated,
     required TResult Function(_Error value) error,
   }) {
     return data(this);
@@ -288,6 +303,7 @@ class _$_Data implements _Data {
     TResult Function(_Initial value)? initial,
     TResult Function(_Data value)? data,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Updated value)? updated,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -346,6 +362,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function(List<Visitor> visitors) data,
     required TResult Function() loading,
+    required TResult Function() updated,
     required TResult Function(String? message) error,
   }) {
     return loading();
@@ -357,6 +374,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function(List<Visitor> visitors)? data,
     TResult Function()? loading,
+    TResult Function()? updated,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -372,6 +390,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Data value) data,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Updated value) updated,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -383,6 +402,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Data value)? data,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Updated value)? updated,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -395,6 +415,101 @@ class _$_Loading implements _Loading {
 
 abstract class _Loading implements VisitorState {
   const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$UpdatedCopyWith<$Res> {
+  factory _$UpdatedCopyWith(_Updated value, $Res Function(_Updated) then) =
+      __$UpdatedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UpdatedCopyWithImpl<$Res> extends _$VisitorStateCopyWithImpl<$Res>
+    implements _$UpdatedCopyWith<$Res> {
+  __$UpdatedCopyWithImpl(_Updated _value, $Res Function(_Updated) _then)
+      : super(_value, (v) => _then(v as _Updated));
+
+  @override
+  _Updated get _value => super._value as _Updated;
+}
+
+/// @nodoc
+
+class _$_Updated implements _Updated {
+  const _$_Updated();
+
+  @override
+  String toString() {
+    return 'VisitorState.updated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Updated);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(List<Visitor> visitors) data,
+    required TResult Function() loading,
+    required TResult Function() updated,
+    required TResult Function(String? message) error,
+  }) {
+    return updated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(List<Visitor> visitors)? data,
+    TResult Function()? loading,
+    TResult Function()? updated,
+    TResult Function(String? message)? error,
+    required TResult orElse(),
+  }) {
+    if (updated != null) {
+      return updated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Data value) data,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Updated value) updated,
+    required TResult Function(_Error value) error,
+  }) {
+    return updated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Data value)? data,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (updated != null) {
+      return updated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Updated implements VisitorState {
+  const factory _Updated() = _$_Updated;
 }
 
 /// @nodoc
@@ -462,6 +577,7 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function(List<Visitor> visitors) data,
     required TResult Function() loading,
+    required TResult Function() updated,
     required TResult Function(String? message) error,
   }) {
     return error(message);
@@ -473,6 +589,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function(List<Visitor> visitors)? data,
     TResult Function()? loading,
+    TResult Function()? updated,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -488,6 +605,7 @@ class _$_Error implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Data value) data,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_Updated value) updated,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -499,6 +617,7 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Data value)? data,
     TResult Function(_Loading value)? loading,
+    TResult Function(_Updated value)? updated,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

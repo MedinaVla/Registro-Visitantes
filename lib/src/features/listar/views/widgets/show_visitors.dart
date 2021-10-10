@@ -1,4 +1,5 @@
 import 'package:admin/src/core/colors.dart';
+import 'package:admin/src/core/shared_widgets/button_icon.dart';
 import 'package:admin/src/core/styles.dart';
 import 'package:admin/src/features/listar/visitor/logic/visitor_provider.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class ShowVisitors extends ConsumerWidget {
               error: (error) => Text(
                 error.toString(),
               ),
+              updated: () {},
             ),
           )
         ],
@@ -59,6 +61,7 @@ Widget dataTableVisitors(
       DataColumn(label: Text('Trabajador')),
       DataColumn(label: Text('Fecha Entrada')),
       DataColumn(label: Text('Hora Entrada')),
+      DataColumn(label: Text('Hora Salida')),
     ],
     columnSpacing: 0,
     horizontalMargin: 40,
@@ -87,6 +90,35 @@ class MyData extends DataTableSource {
       DataCell(Text(visitors[index].nameWorker)),
       DataCell(Text(visitors[index].dateInVisit)),
       DataCell(Text(visitors[index].timeInVisit)),
+      DataCell(_buidExit(visitors[index])),
     ]);
+  }
+
+  _buidExit(Visitor visitor) {
+    return visitor.timeOnVisit!.isEmpty
+        ? _ExitButtonVisitor(visitor: visitor)
+        : Text(visitor.timeOnVisit!);
+  }
+}
+
+class _ExitButtonVisitor extends ConsumerWidget {
+  const _ExitButtonVisitor({Key? key, required this.visitor}) : super(key: key);
+  final Visitor visitor;
+
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    return ElevatedButtonIcon(
+      icon: Icons.outbond,
+      label: Text('Salida'),
+      onPressed: () {
+        ///Update the dateOnVisitor and timeOnVisitor
+        context
+            .read(visitorNotifierUpdateProvider(visitor).notifier)
+            .updateVisitor();
+
+        ///Update datatable
+        context.read(visitorNotifierProvider.notifier).getVisitors();
+      },
+    );
   }
 }

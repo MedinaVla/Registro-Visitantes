@@ -96,24 +96,17 @@ class DatabaseHandler {
     await db!.delete('places');
   }
 
+  // Future<int> insertVisitor(VisitorModel visitor) async {
+  //   int result = 0;
+  //   final Database? db = await database;
+  //   result = await db!.insert('visitors', visitor.toJson(),
+  //       conflictAlgorithm: ConflictAlgorithm.replace);
+  //   return result;
+  // }
   Future<void> updateVisitante(VisitorModel visitorModel) async {
-    // var nowDate = DateTime.now();
-    // var salida = DateFormat('kk:mm').format(DateTime.now());
-    // Visitante updateVisitante = Visitante(
-    //     id: visitante.id,
-    //     name: visitante.name,
-    //     spell: visitante.spell,
-    //     ci: visitante.ci,
-    //     solapin: visitante.solapin,
-    //     place: visitante.place,
-    //     worker: visitante.worker,
-    //     fecha: visitante.fecha,
-    //     entrada: visitante.entrada,
-    //     salida: salida);
-
     final Database? db = await database;
 
-    // await db!.update('visitantes', updateVisitante.toMap(),
-    //     where: 'id=?', whereArgs: [updateVisitante.id]);
+    await db!.update('visitors', visitorModel.toJson(),
+        where: 'id=?', whereArgs: [visitorModel.id]);
   }
 }

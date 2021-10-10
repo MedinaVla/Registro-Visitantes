@@ -27,19 +27,15 @@ class VisitorNotifier extends StateNotifier<RegistroState> {
   final StateController<TextEditingController> _solapin;
 
   ///Function that insertVisisitor show error
-  Future<void> insertVisitor(listPlaces) async {
-    ///Si no se da onTap en SelectWorker
-    ///entonces el nombre del trabajador sera el primero
-    ///de la lista de trabajadores por area
-    ///
-
+  Future<void> insertVisitor() async {
     final result = await _useCasesInsertVisitor();
 
     result.fold(
-      (error) => state = RegistroState.error(error.toString()),
+      (error) {
+        return state = RegistroState.error(error.toString());
+      },
       (message) {
         state = RegistroState.data(message);
-        clearRegistrationForm();
       },
     );
   }
@@ -47,8 +43,12 @@ class VisitorNotifier extends StateNotifier<RegistroState> {
   ///Limpio los datos del formulario Visitante
   clearRegistrationForm() {
     _name.state.clear();
+    _name.state.text = '';
     _spell.state.clear();
+    _spell.state.text = '';
     _ci.state.clear();
+    _ci.state.text = '';
     _solapin.state.clear();
+    _solapin.state.text = '';
   }
 }

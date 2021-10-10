@@ -18,14 +18,15 @@ part 'registro_state_notifier.dart';
 /// Provider que administra los datos y el state del visitante
 final visitorNotifierProvider =
     StateNotifierProvider.family<VisitorNotifier, RegistroState, List<String>?>(
-  (ref, listPlaces) => VisitorNotifier(
+        (ref, listPlaces) {
+  return VisitorNotifier(
     name: ref.watch(nameControllerProvider),
     spell: ref.watch(spellControllerProvider),
     ci: ref.watch(ciControllerProvider),
     solapin: ref.watch(solapinControllerProvider),
     useCasesInsertVisitor: ref.watch(insertVisitorProvider(listPlaces)),
-  ),
-);
+  );
+});
 
 /// Repositories Providers
 final registroProvider = Provider<IPlaceRepository>(
@@ -46,12 +47,16 @@ final swtichStateProvider = StateProvider((ref) => false);
 ///to use in Use Cases InsertVisitor
 final visitorStateProvider =
     StateProvider.family<VisitorModel, List<String>?>((ref, listPlaces) {
-  String name = '';
+  String nameWorker = '';
   final selectedWorker = ref.watch(selectWorkerProvider);
+  final nameVisitor = ref.watch(nameControllerProvider);
+  final spellVisitor = ref.watch(spellControllerProvider);
+  final ciVisitor = ref.watch(ciControllerProvider);
+  final solapinVisitor = ref.watch(solapinControllerProvider);
 
   /// Si el selectedWorker es default le asigno el valor del primer trabajador segun el area
   if (listPlaces!.isNotEmpty) {
-    name = selectedWorker.state.isEmpty
+    nameWorker = selectedWorker.state.isEmpty
         ? listPlaces.first.toString()
         : selectedWorker.state;
   }
@@ -62,7 +67,7 @@ final visitorStateProvider =
       ci: int.parse(ref.watch(ciControllerProvider).state.text),
       solapin: int.parse(ref.watch(solapinControllerProvider).state.text),
       namePlace: ref.watch(selectPlacesProvider).state,
-      nameWorker: name,
+      nameWorker: nameWorker,
       dateInVisit: DateFormat('dd-MM-yyyy').format(DateTime.now()),
       timeInVisit: DateFormat('kk:mm').format(DateTime.now()),
       dateOnVisit: '',
@@ -99,10 +104,10 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
         name.state.text = lines[0].replaceAll("N:", "");
         spell.state.text = lines[2].replaceAll("A:", "");
         ci.state.text = lines[4].replaceAll("CI:", "");
-        print('Archivo cargado correctamente');
       }
       ref.onDispose(() {
         t.cancel();
+        print('CERRANDO EL STREAM');
       });
     });
   }
@@ -124,4 +129,5 @@ final clearProvider = Provider<void>((ref) {
   ref.watch(spellControllerProvider).state.clear();
   ref.watch(ciControllerProvider).state.clear();
   ref.watch(solapinControllerProvider).state.clear();
+  print('Campos limpiados');
 });

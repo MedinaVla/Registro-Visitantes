@@ -1,7 +1,7 @@
 import 'package:place/place.dart';
 import 'package:place/src/data/datasources/local/local_db_datasources.dart';
 
-import 'sqlite_datasources.dart';
+import 'sqlite_database.dart';
 
 class DBDatasources implements LocalDBDataSources {
   @override
@@ -36,6 +36,11 @@ class DBDatasources implements LocalDBDataSources {
   @override
   Future<String> insertVisitor(VisitorModel visitor) async {
     return await DatabaseHandler.instance.insertVisitor(visitor).toString();
+  }
+
+  @override
+  Future<String> updateVisitor(VisitorModel visitor) async {
+    return await DatabaseHandler.instance.updateVisitante(visitor).toString();
   }
 
   @override
