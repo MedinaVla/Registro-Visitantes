@@ -82,7 +82,7 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
     ///si es diferente asigno los valores al formulario
     ///en caso de que ocurra un dispose se cancela el Timer
     new Timer.periodic(oneSec, (Timer t) async {
-      var externalAssetBundle = ExternalAssetBundle("assets/scanning_qrcode");
+      var externalAssetBundle = ExternalAssetBundle("scanning_qrcode");
       var datos = await externalAssetBundle.loadString("barcode_result.txt");
       if (datos != barcode.state && name.state.text.isEmpty) {
         barcode.state = datos;

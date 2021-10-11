@@ -1,7 +1,7 @@
 import 'package:admin/src/core/colors.dart';
 import 'package:admin/src/core/shared_widgets/button_icon.dart';
 import 'package:admin/src/core/styles.dart';
-import 'package:admin/src/features/listar/visitor/logic/visitor_provider.dart';
+import 'package:admin/src/features/listar/logic/visitor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

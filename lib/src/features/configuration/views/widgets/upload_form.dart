@@ -1,21 +1,9 @@
 import 'package:admin/src/core/shared_widgets/button_icon.dart';
-import 'package:admin/src/core/shared_widgets/responsive.dart';
 import 'package:admin/src/core/styles.dart';
-import 'package:admin/src/features/configuration/views/widgets/buttons/configuration_upload_button.dart';
+import 'package:admin/src/features/configuration/logic/place_provider.dart';
 import 'package:admin/src/features/configuration/views/widgets/passowrd_form_upload.dart';
-import 'package:admin/src/features/place/logic/place_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'buttons/configuration_password_button.dart';
-
-// import 'ci_form_visitor.dart';
-// import 'drop_down_places.dart';
-// import 'drop_down_workers.dart';
-// import 'name_form_visitor.dart';
-// import 'save_button_form.dart';
-// import 'solapin_form_visitor.dart';
-// import 'spell_form_visitor.dart';
 
 class UploadForm extends ConsumerWidget {
   UploadForm({
