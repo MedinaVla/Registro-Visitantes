@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'admin_visitor/global_presentation/main_screen.dart';
@@ -9,6 +10,12 @@ class AdminVisitorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('es', 'ES'), // English
+      ],
       debugShowCheckedModeBanner: false,
       title: 'Registro de Visitantes',
       theme: ThemeData.dark().copyWith(

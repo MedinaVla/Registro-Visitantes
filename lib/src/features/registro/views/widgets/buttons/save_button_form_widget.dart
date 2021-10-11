@@ -5,6 +5,8 @@ import 'package:admin/src/features/registro/logic/select_places/select_places_pr
 import 'package:admin/src/features/registro/logic/select_workers/select_workers_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:place/place.dart';
 
 ///Widget to save Form
 class SaveButtonFormWidget extends ConsumerWidget {
@@ -17,9 +19,9 @@ class SaveButtonFormWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     ///Obtengo las datos del Visitante
-
+    final workerSelected = watch(selectWorkerProvider);
     final placeSelected = watch(selectPlacesProvider);
-    final state = watch(selectWorkersNotifer);
+    final selectWorkerList = watch(selectWorkersNotifer);
     final switchValue = watch(swtichStateProvider);
     final name = watch(nameControllerProvider);
     final spell = watch(spellControllerProvider);
@@ -27,7 +29,7 @@ class SaveButtonFormWidget extends ConsumerWidget {
     final solapin = watch(solapinControllerProvider);
 
     ///Obtengo la Lista de los trabajadores que estan por defecto asignados al Selected Worker
-    final listPlacesWorkerName = state.maybeWhen(
+    final listPlacesWorkerName = selectWorkerList.maybeWhen(
         data: (places) => places
             .where((element) => element.namePlace.contains(placeSelected.state))
             .map((e) => e.workerName)
@@ -51,7 +53,9 @@ class SaveButtonFormWidget extends ConsumerWidget {
           name: name,
           spell: spell,
           ci: ci,
-          solapin: solapin),
+          solapin: solapin,
+          workerSelected: workerSelected,
+          placeSelected: placeSelected),
     );
   }
 
@@ -64,16 +68,31 @@ class SaveButtonFormWidget extends ConsumerWidget {
       required name,
       required spell,
       required ci,
-      required solapin}) {
+      required solapin,
+      required workerSelected,
+      required placeSelected}) {
     ///Si el formulario es valido guardo los datos
     if (formKey.currentState!.validate()) {
       ///Inserto los datos del visitante
+      ///
+      final nameWorker = workerSelected.state.isEmpty
+          ? listPlaces!.first.toString()
+          : workerSelected.state;
 
-      context
-          .read(visitorNotifierProvider(listPlaces).notifier)
-          .insertVisitor();
-      switchValue.state = false;
-      // context.read(clearProvider);
+      final VisitorModel visitante = VisitorModel(
+          name: name.state.text,
+          spell: spell.state.text,
+          ci: int.parse(ci.state.text),
+          solapin: int.parse(solapin.state.text),
+          namePlace: placeSelected.state,
+          nameWorker: nameWorker,
+          dateInVisit: DateFormat('dd-MM-yyyy').format(DateTime.now()),
+          timeInVisit: DateFormat('kk:mm').format(DateTime.now()),
+          dateOnVisit: '',
+          timeOnVisit: '');
+
+      context.read(visitorNotifierProvider(visitante).notifier).insertVisitor();
+      // switchValue.state = false;
       name.state.clear();
       spell.state.clear();
       ci.state.clear();

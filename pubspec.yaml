@@ -9,6 +9,8 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
+  flutter_localizations:
+    sdk: flutter
   dartz: ^0.10.0
   data_table_2: ^2.0.3
   equatable: any
@@ -29,6 +31,7 @@ dependencies:
   place:
     path: ./package/place
   wc_form_validators: ^1.0.0
+  group_radio_button: ^1.1.0
 
 dev_dependencies:
   build_runner: null

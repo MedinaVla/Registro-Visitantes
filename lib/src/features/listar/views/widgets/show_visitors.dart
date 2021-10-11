@@ -110,6 +110,7 @@ class _ExitButtonVisitor extends ConsumerWidget {
     return ElevatedButtonIcon(
       icon: Icons.outbond,
       label: Text('Salida'),
+      colorButton: Colors.red,
       onPressed: () {
         ///Update the dateOnVisitor and timeOnVisitor
         context

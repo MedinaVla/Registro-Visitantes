@@ -33,14 +33,7 @@ class SideMenu extends ConsumerWidget {
               Navigator.pop(context);
             },
           ),
-          DrawerListTile(
-            title: "Marcar Salida Visitantes",
-            svgSrc: "assets/icons/menu_task.svg",
-            press: () {
-              page.state = 2;
-              Navigator.pop(context);
-            },
-          ),
+
           DrawerListTile(
             title: "Configuración",
             svgSrc: "assets/icons/menu_doc.svg",

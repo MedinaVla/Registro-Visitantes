@@ -11,7 +11,6 @@ class MainScreen extends ConsumerWidget {
   final List<Widget> _pages = [
     RegistrationPage(),
     ListarPage(),
-    ListarPage(),
     ConfigurationPage(),
   ];
   @override

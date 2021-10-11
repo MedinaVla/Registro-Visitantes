@@ -17,14 +17,10 @@ part 'registro_state_notifier.dart';
 
 /// Provider que administra los datos y el state del visitante
 final visitorNotifierProvider =
-    StateNotifierProvider.family<VisitorNotifier, RegistroState, List<String>?>(
-        (ref, listPlaces) {
+    StateNotifierProvider.family<VisitorNotifier, RegistroState, VisitorModel>(
+        (ref, visitor) {
   return VisitorNotifier(
-    name: ref.watch(nameControllerProvider),
-    spell: ref.watch(spellControllerProvider),
-    ci: ref.watch(ciControllerProvider),
-    solapin: ref.watch(solapinControllerProvider),
-    useCasesInsertVisitor: ref.watch(insertVisitorProvider(listPlaces)),
+    useCasesInsertVisitor: ref.watch(insertVisitorProvider(visitor)),
   );
 });
 
@@ -34,10 +30,9 @@ final registroProvider = Provider<IPlaceRepository>(
 
 /// Use Cases Insert Visitors
 final insertVisitorProvider =
-    Provider.family<InsertVisitor, List<String>?>((ref, listPlaces) {
+    Provider.family<InsertVisitor, VisitorModel>((ref, visitor) {
   final repository = ref.watch(registroProvider);
-  final visitor = ref.watch(visitorStateProvider(listPlaces));
-  return InsertVisitor(repository: repository, visitor: visitor.state);
+  return InsertVisitor(repository: repository, visitor: visitor);
 });
 
 ///Switch Provider for Button
@@ -49,10 +44,6 @@ final visitorStateProvider =
     StateProvider.family<VisitorModel, List<String>?>((ref, listPlaces) {
   String nameWorker = '';
   final selectedWorker = ref.watch(selectWorkerProvider);
-  final nameVisitor = ref.watch(nameControllerProvider);
-  final spellVisitor = ref.watch(spellControllerProvider);
-  final ciVisitor = ref.watch(ciControllerProvider);
-  final solapinVisitor = ref.watch(solapinControllerProvider);
 
   /// Si el selectedWorker es default le asigno el valor del primer trabajador segun el area
   if (listPlaces!.isNotEmpty) {

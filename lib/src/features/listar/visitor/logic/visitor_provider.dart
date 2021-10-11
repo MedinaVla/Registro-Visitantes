@@ -60,3 +60,6 @@ final dateSelectedSateProvider = StateProvider<String>((ref) {
 
 ///TextField to filtring Visitors
 final searchStateProvider = StateProvider<String>((ref) => '');
+
+///RadioButton Date Selected
+final radioButtonStateProvider = StateProvider<String>((ref) => '');

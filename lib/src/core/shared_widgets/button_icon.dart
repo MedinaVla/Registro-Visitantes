@@ -6,6 +6,7 @@ import 'responsive.dart';
 class ElevatedButtonIcon extends StatelessWidget {
   ElevatedButtonIcon({
     Key? key,
+    this.colorButton,
     required this.onPressed,
     required this.icon,
     required this.label,
@@ -14,11 +15,13 @@ class ElevatedButtonIcon extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData icon;
   final Widget label;
+  final Color? colorButton;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: TextButton.styleFrom(
+        backgroundColor: colorButton,
         padding: EdgeInsets.symmetric(
           horizontal: defaultPadding * 1.5,
           vertical: defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
