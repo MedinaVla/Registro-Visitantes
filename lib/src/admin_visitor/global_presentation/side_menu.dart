@@ -38,7 +38,7 @@ class SideMenu extends ConsumerWidget {
             title: "Configuración",
             svgSrc: "assets/icons/menu_doc.svg",
             press: () {
-              page.state = 3;
+              page.state = 2;
               Navigator.pop(context);
             },
           ),

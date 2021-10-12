@@ -43,14 +43,14 @@ class SelectedDateWidget extends ConsumerWidget {
     showDatePicker(
       context: context,
       firstDate: DateTime(DateTime.now().year - 1, 5),
-      lastDate: DateTime(DateTime.now().year + 1, 9),
+      lastDate: DateTime(DateTime.now().year + 1),
       initialDate: DateTime.now(),
       initialDatePickerMode: DatePickerMode.day,
       locale: Locale("es"),
     ).then((date) {
       if (date != null) {
         dateSelected.state = DateFormat('dd-MM-yyyy').format(date);
-        context.read(visitorNotifierProvider.notifier).getVisitors();
+        context.read(visitorDataTableNotifierProvider.notifier).getVisitors();
       }
     });
   }
@@ -66,7 +66,7 @@ class SelectedDateWidget extends ConsumerWidget {
     ).then((date) {
       if (date != null) {
         dateSelected.state = DateFormat('MM-yyyy').format(date);
-        context.read(visitorNotifierProvider.notifier).getVisitors();
+        context.read(visitorDataTableNotifierProvider.notifier).getVisitors();
       }
     });
   }

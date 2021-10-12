@@ -1,0 +1,139 @@
+import 'package:admin/src/core/shared_widgets/responsive.dart';
+import 'package:admin/src/core/styles.dart';
+import 'package:admin/src/features/listar/logic/visitor_provider.dart';
+import 'package:admin/src/features/registro/logic/registro_provider.dart';
+import 'package:admin/src/features/registro/views/widgets/buttons/buttons.dart';
+import 'package:admin/src/features/registro/views/widgets/buttons/update_button_form_widget.dart';
+import 'package:admin/src/features/registro/views/widgets/dropdown/drop_down_places_widget.dart';
+import 'package:admin/src/features/registro/views/widgets/dropdown/drop_down_workers_widget.dart';
+import 'package:admin/src/features/registro/views/widgets/text_form/ci_form_visitor.dart';
+import 'package:admin/src/features/registro/views/widgets/text_form/name_form_visitor.dart';
+import 'package:admin/src/features/registro/views/widgets/text_form/solapin_form_visitor.dart';
+import 'package:admin/src/features/registro/views/widgets/text_form/spell_form_visitor.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class UpdateVisitorFormWidget extends ConsumerWidget {
+  UpdateVisitorFormWidget({
+    Key? key,
+    required this.visitor,
+  }) : super(key: key);
+  final Visitor visitor;
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    final Size size = MediaQuery.of(context).size;
+    watch(updateTextControllerFormProvider(visitor));
+
+    return Form(
+      key: _formKey,
+      child: _buildForm(context, size),
+    );
+  }
+
+  Column _buildForm(BuildContext context, Size size) {
+    return Column(
+      children: [
+        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+        if (Responsive.isMobile(context))
+          columnTextForm(
+            context,
+            size,
+            textForm1: NameVisitor(),
+            textForm2: SpellVisitor(),
+          ),
+        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+        if (Responsive.isMobile(context))
+          columnTextForm(
+            context,
+            size,
+            textForm1: CiVisitor(),
+            textForm2: SolapinVisitor(),
+          ),
+        if (!Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+        if (!Responsive.isMobile(context))
+          rowTextForm(
+            context,
+            size,
+            textForm1: NameVisitor(),
+            textForm2: SpellVisitor(),
+          ),
+        if (!Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+        if (!Responsive.isMobile(context))
+          rowTextForm(
+            context,
+            size,
+            textForm1: CiVisitor(),
+            textForm2: SolapinVisitor(),
+          ),
+        Divider(),
+        if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+        if (Responsive.isMobile(context))
+          columnSelectForm(
+            context,
+            size,
+            textForm1: DropDownPlacesWidget(),
+            textForm2: DropDownWorkersWidget(),
+          ),
+        SizedBox(height: defaultPadding),
+        if (!Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+        if (!Responsive.isMobile(context))
+          rowTextForm(
+            context,
+            size,
+            textForm1: DropDownPlacesWidget(),
+            textForm2: DropDownWorkersWidget(),
+          ),
+        SizedBox(height: defaultPadding),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            UpdateButtonFormWidget(
+              formKey: _formKey,
+              visitor: visitor,
+            ),
+            Container(
+              width: size.width / 10,
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget columnTextForm(context, size,
+      {required Widget textForm1, required Widget textForm2}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(width: size.width, child: textForm1),
+        Container(width: size.width, child: textForm2),
+      ],
+    );
+  }
+
+  Widget columnSelectForm(context, size,
+      {required Widget textForm1, required Widget textForm2}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(width: size.width, child: textForm1),
+        SizedBox(height: defaultPadding),
+        Container(width: size.width, child: textForm2),
+      ],
+    );
+  }
+
+  Widget rowTextForm(context, size,
+      {required Widget textForm1, required Widget textForm2}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(width: size.width / 3, child: textForm1),
+        Container(width: size.width / 3, child: textForm2),
+      ],
+    );
+  }
+}

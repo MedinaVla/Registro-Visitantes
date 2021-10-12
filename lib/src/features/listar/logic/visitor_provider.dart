@@ -10,15 +10,15 @@ part 'visitor_state_notifier.dart';
 part 'visitor_update_notifier.dart';
 
 /// Provider to use the VisitorStateNotifier
-final visitorNotifierProvider =
+final visitorDataTableNotifierProvider =
     StateNotifierProvider.autoDispose<VisitorNotifier, VisitorState>(
   (ref) => VisitorNotifier(visitors: ref.watch(_getVisitorsProvider)),
 );
 
-final visitorNotifierUpdateProvider =
-    StateNotifierProvider.family<VisitorUpdateNotifier, VisitorState, Visitor>(
-        (ref, visitor) => VisitorUpdateNotifier(
-            visitors: ref.watch(_updateVisitorProvider(visitor))));
+final visitorNotifierUpdateProvider = StateNotifierProvider.family<
+        VisitorUpdateNotifier, VisitorState, VisitorModel>(
+    (ref, visitor) => VisitorUpdateNotifier(
+        visitors: ref.watch(_updateVisitorProvider(visitor))));
 
 /// Repositories Providers
 final _visitorRepositoryProvider = Provider<IPlaceRepository>(
@@ -33,24 +33,10 @@ final _getVisitorsProvider = Provider<GetVisitorsByDate>((ref) {
 
 ///Uses Cases Update Visitor
 final _updateVisitorProvider =
-    Provider.family<UpdateVisitor, Visitor>((ref, visitor) {
+    Provider.family<UpdateVisitor, VisitorModel>((ref, visitor) {
   final repository = ref.watch(_visitorRepositoryProvider);
-  final updateVisitor = VisitorModel(
-    id: visitor.id,
-    name: visitor.name,
-    spell: visitor.spell,
-    ci: visitor.ci,
-    solapin: visitor.solapin,
-    namePlace: visitor.namePlace,
-    nameWorker: visitor.nameWorker,
-    dateInVisit: visitor.dateInVisit,
-    timeInVisit: visitor.timeInVisit,
-    dateOnVisit: DateFormat('dd-MM-yyyy').format(DateTime.now()),
-    timeOnVisit: DateFormat('kk:mm').format(DateTime.now()),
-  );
-  // visitor.copyWith(timeOnVisit: DateFormat('kk:mm').format(DateTime.now()));
 
-  return UpdateVisitor(repository: repository, visitor: updateVisitor);
+  return UpdateVisitor(repository: repository, visitor: visitor);
 });
 
 ///State provider to change date

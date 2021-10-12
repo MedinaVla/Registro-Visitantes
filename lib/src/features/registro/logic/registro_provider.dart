@@ -122,3 +122,14 @@ final clearProvider = Provider<void>((ref) {
   ref.watch(solapinControllerProvider).state.clear();
   print('Campos limpiados');
 });
+
+final updateTextControllerFormProvider =
+    Provider.family<void, Visitor>((ref, visitor) {
+  ref.watch(nameControllerProvider).state.text = visitor.name;
+  ref.watch(spellControllerProvider).state.text = visitor.spell;
+  ref.watch(ciControllerProvider).state.text = visitor.ci.toString();
+  ref.watch(solapinControllerProvider).state.text = visitor.solapin.toString();
+
+  // ref.watch(selectPlacesProvider).state = visitor.namePlace;
+  // ref.watch(selectWorkerProvider).state = visitor.nameWorker;
+});

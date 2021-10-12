@@ -2,8 +2,13 @@ import 'package:admin/src/core/colors.dart';
 import 'package:admin/src/core/shared_widgets/button_icon.dart';
 import 'package:admin/src/core/styles.dart';
 import 'package:admin/src/features/listar/logic/visitor_provider.dart';
+import 'package:admin/src/features/registro/logic/registro_provider.dart';
+import 'package:admin/src/features/registro/logic/select_places/select_places_provider.dart';
+import 'package:admin/src/features/registro/logic/select_workers/select_workers_provider.dart';
+import 'package:admin/src/features/registro/views/update_visitor_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class ShowVisitors extends ConsumerWidget {
   const ShowVisitors({
@@ -12,7 +17,7 @@ class ShowVisitors extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final allVisitors = watch(visitorNotifierProvider);
+    final allVisitors = watch(visitorDataTableNotifierProvider);
     final StateController<String> search = watch(searchStateProvider);
     return Container(
       padding: EdgeInsets.all(defaultPadding),
@@ -60,7 +65,6 @@ Widget dataTableVisitors(
       DataColumn(label: Text('Area')),
       DataColumn(label: Text('Trabajador')),
       DataColumn(label: Text('Fecha Entrada')),
-      DataColumn(label: Text('Hora Entrada')),
       DataColumn(label: Text('Hora Salida')),
     ],
     columnSpacing: 0,
@@ -82,14 +86,17 @@ class MyData extends DataTableSource {
   ///Get Rows of Visitors
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(visitors[index].name)),
+      DataCell(DialogEditVisitor(
+        visitor: visitors[index],
+      )),
       DataCell(Text(visitors[index].spell)),
       DataCell(Text(visitors[index].ci.toString())),
       DataCell(Text(visitors[index].solapin.toString())),
       DataCell(Text(visitors[index].namePlace)),
       DataCell(Text(visitors[index].nameWorker)),
-      DataCell(Text(visitors[index].dateInVisit)),
-      DataCell(Text(visitors[index].timeInVisit)),
+      DataCell(Text(
+          '${visitors[index].dateInVisit}  ${visitors[index].timeInVisit}')),
+      // DataCell(Text(visitors[index].timeInVisit)),
       DataCell(_buidExit(visitors[index])),
     ]);
   }
@@ -97,7 +104,47 @@ class MyData extends DataTableSource {
   _buidExit(Visitor visitor) {
     return visitor.timeOnVisit!.isEmpty
         ? _ExitButtonVisitor(visitor: visitor)
-        : Text(visitor.timeOnVisit!);
+        : Text('${visitor.dateOnVisit}  ${visitor.timeOnVisit!}');
+  }
+}
+
+class DialogEditVisitor extends ConsumerWidget {
+  const DialogEditVisitor({Key? key, required this.visitor}) : super(key: key);
+  final Visitor visitor;
+
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    final switchButton = watch(swtichStateProvider);
+    final selectPlace = watch(selectPlacesProvider);
+    final selectWorker = watch(selectWorkerProvider);
+    return TextButton(
+        style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(Colors.white)),
+        onPressed: () {
+          switchButton.state = true;
+          selectPlace.state = visitor.namePlace;
+          selectWorker.state = visitor.nameWorker;
+
+          return _showMaterialDialog(context);
+        },
+        child: Text(visitor.name));
+  }
+
+  void _showMaterialDialog(context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Editar Visitante'),
+            content: UpdateVisitorFormWidget(
+              visitor: visitor,
+            ),
+          );
+        });
+  }
+
+  _dismissDialog(context) {
+    Navigator.pop(context);
   }
 }
 
@@ -112,13 +159,28 @@ class _ExitButtonVisitor extends ConsumerWidget {
       label: Text('Salida'),
       colorButton: Colors.red,
       onPressed: () {
+        ///Update visitorModel with data of Visitor
+        final newVisitor = VisitorModel(
+          id: visitor.id,
+          name: visitor.name,
+          spell: visitor.spell,
+          ci: visitor.ci,
+          solapin: visitor.solapin,
+          namePlace: visitor.namePlace,
+          nameWorker: visitor.nameWorker,
+          dateInVisit: visitor.dateInVisit,
+          timeInVisit: visitor.timeInVisit,
+          dateOnVisit: DateFormat('dd-MM-yyyy').format(DateTime.now()),
+          timeOnVisit: DateFormat('kk:mm').format(DateTime.now()),
+        );
+
         ///Update the dateOnVisitor and timeOnVisitor
         context
-            .read(visitorNotifierUpdateProvider(visitor).notifier)
+            .read(visitorNotifierUpdateProvider(newVisitor).notifier)
             .updateVisitor();
 
         ///Update datatable
-        context.read(visitorNotifierProvider.notifier).getVisitors();
+        context.read(visitorDataTableNotifierProvider.notifier).getVisitors();
       },
     );
   }
