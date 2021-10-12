@@ -1,6 +1,5 @@
 import 'package:admin/src/core/colors.dart';
 import 'package:admin/src/core/styles.dart';
-import 'package:admin/src/features/configuration/views/widgets/buttons/buttons.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/widgets.dart';
