@@ -2,6 +2,7 @@ import 'package:admin/src/core/colors.dart';
 import 'package:admin/src/core/shared_widgets/button_icon.dart';
 import 'package:admin/src/core/styles.dart';
 import 'package:admin/src/features/listar/logic/visitor_provider.dart';
+import 'package:admin/src/features/listar/views/widgets/export_excel_visitor.dart';
 import 'package:admin/src/features/registro/logic/registro_provider.dart';
 import 'package:admin/src/features/registro/logic/select_places/select_places_provider.dart';
 import 'package:admin/src/features/registro/logic/select_workers/select_workers_provider.dart';
@@ -56,7 +57,13 @@ Widget dataTableVisitors(
 
   return PaginatedDataTable(
     source: _data,
-    header: Text('Visitantes'),
+    header: Row(
+      children: [
+        Text('Visitantes'),
+        Spacer(),
+        ExportExcelVisitorWidget(visitors: visitors),
+      ],
+    ),
     columns: [
       DataColumn(label: Text('Nombre')),
       DataColumn(label: Text('Apellidos')),

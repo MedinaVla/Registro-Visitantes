@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:admin/src/features/listar/logic/export_visitor/logic/export_visitor_provider.dart';
 import 'package:external_asset_bundle/external_asset_bundle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -77,6 +78,9 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
   final barcode = ref.watch(barcodeStateProvider);
   final switchValue = ref.watch(swtichStateProvider);
   const oneSec = const Duration(seconds: 1);
+  final _pathProvider = ref.watch(pathStateProvider);
+  print('Cargando ruta de export ${_pathProvider.state}');
+
   if (switchValue.state == false) {
     ///Cargo el archivo barcode_result cada segundo
     ///si es diferente asigno los valores al formulario

@@ -18,6 +18,8 @@ dependencies:
   path:
   filepicker_windows: ^2.0.0
   sqflite_common_ffi: ^2.0.0+3
+  intl: ^0.17.0
+  csv: ^5.0.0
 
 dev_dependencies:
   # code generators

@@ -11,3 +11,4 @@ export 'usecases/get_places_names.dart';
 export 'usecases/get_visitors_by_date.dart';
 export 'usecases/insert_visitor.dart';
 export 'usecases/update_visitor.dart';
+export 'usecases/export_excel_visitors.dart';

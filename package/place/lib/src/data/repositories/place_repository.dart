@@ -1,20 +1,24 @@
 import 'package:dartz/dartz.dart';
 import 'package:errors/errors.dart';
 import 'package:place/place.dart';
+import 'package:place/src/data/datasources/local/local_download_file_datasources.dart';
 
 import '../../domain/domain.dart';
 
 /// Place repository implementation
 
 class PlaceRepository implements IPlaceRepository {
-  PlaceRepository({
-    LocalOpenFileDataSources? localDataSource,
-    LocalDBDataSources? localDBDataSource,
-  })  : _localDataSource = localDataSource,
-        _localDBDataSource = localDBDataSource;
+  PlaceRepository(
+      {LocalOpenFileDataSources? localDataSource,
+      LocalDBDataSources? localDBDataSource,
+      LocalDownloadExcelDataSources? localDownloadExcelDataSource})
+      : _localDataSource = localDataSource,
+        _localDBDataSource = localDBDataSource,
+        _localDownloadExcelDataSource = localDownloadExcelDataSource;
 
   final LocalOpenFileDataSources? _localDataSource;
   final LocalDBDataSources? _localDBDataSource;
+  final LocalDownloadExcelDataSources? _localDownloadExcelDataSource;
 
   @override
   Future<Either<Failure, String>> uploadPlaces() async {
@@ -96,6 +100,20 @@ class PlaceRepository implements IPlaceRepository {
     try {
       final result = await _localDBDataSource!.getVisitorsByDate(dateSelected);
       return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> exportExcelVisitor(
+      List<Visitor> visitors, String pathProvider) async {
+    try {
+      final place = await _localDownloadExcelDataSource!
+          .exportExcel(visitors, pathProvider);
+      return Right(place);
     } on ServerException {
       return Left(ServerFailure());
     } catch (e) {

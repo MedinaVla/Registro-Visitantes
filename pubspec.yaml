@@ -34,11 +34,12 @@ dependencies:
   group_radio_button: ^1.1.0
 
 dev_dependencies:
-  build_runner: null
+  build_runner: 
   flutter_test:
     sdk: flutter
   freezed: null
   json_serializable: any
+  path_provider_windows:
 
 flutter:
 

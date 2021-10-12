@@ -9,5 +9,6 @@ abstract class IPlaceRepository {
   Future<Either<Failure, String>> uploadPlaces();
   Future<Either<Failure, String>> insertVisitor(VisitorModel visitor);
   Future<Either<Failure, String>> updateVisitor(VisitorModel visitor);
+  Future<Either<Failure, String>> exportExcelVisitor(List<Visitor> visitors,String pathProvider);
   Future<Either<Failure, List<Visitor>>> getVisitorsByDate(String date);
 }
