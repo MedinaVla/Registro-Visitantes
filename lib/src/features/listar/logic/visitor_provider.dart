@@ -48,4 +48,4 @@ final dateSelectedSateProvider = StateProvider<String>((ref) {
 final searchStateProvider = StateProvider<String>((ref) => '');
 
 ///RadioButton Date Selected
-final radioButtonStateProvider = StateProvider<String>((ref) => '');
+final radioButtonStateProvider = StateProvider<String>((ref) => 'day');

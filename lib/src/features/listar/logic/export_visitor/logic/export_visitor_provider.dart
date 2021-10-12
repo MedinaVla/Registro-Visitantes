@@ -44,6 +44,5 @@ final pathStateProvider = StateProvider<String>((ref) {
 final _pathDirectoryProvider = FutureProvider<String?>((_) async {
   final PathProviderWindows provider = PathProviderWindows();
   String? appSupportDirectory = await provider.getApplicationDocumentsPath();
-  print('Directory $appSupportDirectory');
   return appSupportDirectory;
 });

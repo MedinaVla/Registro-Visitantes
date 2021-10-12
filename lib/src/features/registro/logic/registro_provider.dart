@@ -79,7 +79,6 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
   final switchValue = ref.watch(swtichStateProvider);
   const oneSec = const Duration(seconds: 1);
   final _pathProvider = ref.watch(pathStateProvider);
-  print('Cargando ruta de export ${_pathProvider.state}');
 
   if (switchValue.state == false) {
     ///Cargo el archivo barcode_result cada segundo
@@ -102,7 +101,6 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
       }
       ref.onDispose(() {
         t.cancel();
-        print('CERRANDO EL STREAM');
       });
     });
   }
@@ -124,7 +122,6 @@ final clearProvider = Provider<void>((ref) {
   ref.watch(spellControllerProvider).state.clear();
   ref.watch(ciControllerProvider).state.clear();
   ref.watch(solapinControllerProvider).state.clear();
-  print('Campos limpiados');
 });
 
 final updateTextControllerFormProvider =
@@ -133,7 +130,4 @@ final updateTextControllerFormProvider =
   ref.watch(spellControllerProvider).state.text = visitor.spell;
   ref.watch(ciControllerProvider).state.text = visitor.ci.toString();
   ref.watch(solapinControllerProvider).state.text = visitor.solapin.toString();
-
-  // ref.watch(selectPlacesProvider).state = visitor.namePlace;
-  // ref.watch(selectWorkerProvider).state = visitor.nameWorker;
 });

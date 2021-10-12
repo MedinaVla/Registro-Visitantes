@@ -72,15 +72,11 @@ Future<String> _startDownload(String savePath, List<Visitor> visitors) async {
 
       excelData.add(listVisitante);
     }
-    print(excelData.first);
-    print("1-El excel es $result");
 
     String csvData = ListToCsvConverter().convert(excelData);
     await file.writeAsString(csvData);
     result['isSuccess'] = true;
-    // print(savePath)
     result['filePath'] = savePath;
-    print("2-El excel es $result");
   } catch (ex) {
     result['error'] = ex.toString();
   } finally {
