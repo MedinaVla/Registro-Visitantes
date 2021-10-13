@@ -11,3 +11,5 @@ App para el registro de visitantes en Windows utilizando Clean Architecture y Ri
 
 Se exporta los visitantes en formato .csv en la carpeta Documentos del usuario
 Se puede leer con WPS https://www.wps.com/phone/
+![Image text](https://github.com/MedinaVla/Registro-Visitantes/blob/main/Registro_visitante1.png)
+![Image text](https://github.com/MedinaVla/Registro-Visitantes/blob/main/Registro_visitante2.png) 
