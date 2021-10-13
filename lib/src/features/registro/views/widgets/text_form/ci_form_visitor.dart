@@ -5,7 +5,6 @@ import 'package:admin/src/features/registro/logic/registro_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wc_form_validators/wc_form_validators.dart';
 
 // badge_outlined
 class CiVisitor extends ConsumerWidget {
@@ -14,12 +13,10 @@ class CiVisitor extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final double errorFont = Responsive.isMobile(context) ? 10.0 : 15.0;
-    final switchValue = watch(swtichStateProvider);
     final ciController = watch(ciControllerProvider);
 
     return TextFormWidget(
       controller: ciController.state,
-      switchValue: !switchValue.state,
       errorFont: errorFont,
       labelText: 'CI',
       validator: validateCi(),

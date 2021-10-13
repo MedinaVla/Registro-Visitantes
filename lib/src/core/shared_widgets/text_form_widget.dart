@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 class TextFormWidget extends StatelessWidget {
   const TextFormWidget({
     Key? key,
-    this.switchValue = false,
     this.inputFormatters,
     this.obscureText = false,
     this.onChanged,
@@ -16,7 +15,6 @@ class TextFormWidget extends StatelessWidget {
     required this.maxLength,
   }) : super(key: key);
 
-  final bool switchValue;
   final double errorFont;
   final String labelText;
   final FormFieldValidator<String>? validator;
@@ -32,7 +30,6 @@ class TextFormWidget extends StatelessWidget {
     return TextFormField(
         controller: controller,
         onChanged: onChanged,
-        readOnly: switchValue,
         obscureText: obscureText,
         textInputAction: TextInputAction.next,
         validator: validator,

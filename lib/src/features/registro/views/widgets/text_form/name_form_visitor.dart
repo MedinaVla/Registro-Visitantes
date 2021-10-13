@@ -10,12 +10,10 @@ class NameVisitor extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final double errorFont = Responsive.isMobile(context) ? 10.0 : 15.0;
-    final switchValue = watch(swtichStateProvider);
     final nameController = watch(nameControllerProvider);
 
     return TextFormWidget(
       controller: nameController.state,
-      switchValue: !switchValue.state,
       errorFont: errorFont,
       labelText: 'Nombre',
       validator: validateName(),

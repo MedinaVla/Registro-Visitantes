@@ -3,7 +3,6 @@ import 'package:admin/src/core/shared_widgets/button_icon.dart';
 import 'package:admin/src/core/styles.dart';
 import 'package:admin/src/features/listar/logic/visitor_provider.dart';
 import 'package:admin/src/features/listar/views/widgets/export_excel_visitor.dart';
-import 'package:admin/src/features/registro/logic/registro_provider.dart';
 import 'package:admin/src/features/registro/logic/select_places/select_places_provider.dart';
 import 'package:admin/src/features/registro/logic/select_workers/select_workers_provider.dart';
 import 'package:admin/src/features/registro/views/update_visitor_form_widget.dart';
@@ -121,14 +120,12 @@ class DialogEditVisitor extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final switchButton = watch(swtichStateProvider);
     final selectPlace = watch(selectPlacesProvider);
     final selectWorker = watch(selectWorkerProvider);
     return TextButton(
         style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all(Colors.white)),
         onPressed: () {
-          switchButton.state = true;
           selectPlace.state = visitor.namePlace;
           selectWorker.state = visitor.nameWorker;
 
@@ -148,10 +145,6 @@ class DialogEditVisitor extends ConsumerWidget {
             ),
           );
         });
-  }
-
-  _dismissDialog(context) {
-    Navigator.pop(context);
   }
 }
 

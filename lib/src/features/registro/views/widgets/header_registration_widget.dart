@@ -3,8 +3,6 @@ import 'package:admin/src/core/shared_widgets/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'buttons/buttons.dart';
-
 class HeaderRegistrationWidget extends ConsumerWidget {
   const HeaderRegistrationWidget({
     Key? key,
@@ -39,7 +37,6 @@ class HeaderRegistrationWidget extends ConsumerWidget {
             icon: Icon(Icons.menu),
             onPressed: watch(menuProvider).controlMenu,
           ),
-        SwitchButtonHeaderWidget(),
       ],
     );
   }

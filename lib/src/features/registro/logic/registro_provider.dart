@@ -36,9 +36,6 @@ final insertVisitorProvider =
   return InsertVisitor(repository: repository, visitor: visitor);
 });
 
-///Switch Provider for Button
-final swtichStateProvider = StateProvider((ref) => false);
-
 ///Provider that managment the state of Object Visitor
 ///to use in Use Cases InsertVisitor
 final visitorStateProvider =
@@ -69,45 +66,6 @@ final visitorStateProvider =
 
 ///Variable que guarda informacion del carnet escaneado y cargado por el file scanning_qrcode
 final barcodeStateProvider = StateProvider<String>((ref) => '');
-
-/// Get Visitor Data from file with Stream
-final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
-  final name = ref.watch(nameControllerProvider);
-  final spell = ref.watch(spellControllerProvider);
-  final ci = ref.watch(ciControllerProvider);
-  final barcode = ref.watch(barcodeStateProvider);
-  final switchValue = ref.watch(swtichStateProvider);
-  const oneSec = const Duration(seconds: 1);
-  final _pathProvider = ref.watch(pathStateProvider);
-  print('********');
-
-  print(barcode.state);
-  print('********');
-  if (switchValue.state == false) {
-    ///Cargo el archivo barcode_result cada segundo
-    ///si es diferente asigno los valores al formulario
-    ///en caso de que ocurra un dispose se cancela el Timer
-    new Timer.periodic(oneSec, (Timer t) async {
-      var externalAssetBundle = ExternalAssetBundle("scanning_qrcode");
-      var datos = await externalAssetBundle.loadString("barcode_result.txt");
-      if (datos != barcode.state) {
-        barcode.state = datos;
-
-        /// Variable that convert datos in line splitter
-        LineSplitter ls = new LineSplitter();
-        List<String> lines = ls.convert(datos);
-
-        ///Asigno los valores nombre, apellidos y CI
-        name.state.text = lines[0].replaceAll("N:", "");
-        spell.state.text = lines[2].replaceAll("A:", "");
-        ci.state.text = lines[4].replaceAll("CI:", "");
-      }
-      ref.onDispose(() {
-        t.cancel();
-      });
-    });
-  }
-});
 
 ///TextEditingController of Form Registration Visitors
 final nameControllerProvider =

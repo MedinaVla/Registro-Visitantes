@@ -22,7 +22,6 @@ class SaveButtonFormWidget extends ConsumerWidget {
     final workerSelected = watch(selectWorkerProvider);
     final placeSelected = watch(selectPlacesProvider);
     final selectWorkerList = watch(selectWorkersNotifer);
-    final switchValue = watch(swtichStateProvider);
     final name = watch(nameControllerProvider);
     final spell = watch(spellControllerProvider);
     final ci = watch(ciControllerProvider);
@@ -49,7 +48,6 @@ class SaveButtonFormWidget extends ConsumerWidget {
           context: context,
           watch: watch,
           listPlaces: listPlacesWorkerName,
-          switchValue: switchValue,
           name: name,
           spell: spell,
           ci: ci,
@@ -64,7 +62,6 @@ class SaveButtonFormWidget extends ConsumerWidget {
       {required BuildContext context,
       required ScopedReader watch,
       required List<String>? listPlaces,
-      required switchValue,
       required name,
       required spell,
       required ci,
@@ -92,7 +89,6 @@ class SaveButtonFormWidget extends ConsumerWidget {
           timeOnVisit: '');
 
       context.read(visitorNotifierProvider(visitante).notifier).insertVisitor();
-      // switchValue.state = false;
       name.state.clear();
       spell.state.clear();
       ci.state.clear();

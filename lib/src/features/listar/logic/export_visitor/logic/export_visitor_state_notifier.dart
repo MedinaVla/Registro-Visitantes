@@ -1,5 +1,4 @@
 part of 'export_visitor_provider.dart';
-// TODO: Implement ExportVisitor StateNotifier
 
 /// Defines all the ExportVisitor logic the app will use
 class ExportVisitorNotifier extends StateNotifier<ExportVisitorState> {
