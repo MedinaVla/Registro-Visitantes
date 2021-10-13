@@ -1,3 +1,4 @@
+import 'package:admin/src/features/listar/logic/export_visitor/logic/export_visitor_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:place/place.dart';
 
@@ -17,6 +18,8 @@ final _getDBRepositoryProvider = Provider<IPlaceRepository>(
 
 //Uses Cases that return Future<Either<Failure, List<String>>>
 final _getPlacesNamesProvider = Provider<GetPlacesNames>((ref) {
+  //cargo path_provider
+
   final repository = ref.watch(_getDBRepositoryProvider);
   return GetPlacesNames(repository: repository);
 });

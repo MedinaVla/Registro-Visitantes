@@ -1,5 +1,6 @@
 import 'package:admin/src/core/shared_widgets/responsive.dart';
 import 'package:admin/src/core/styles.dart';
+import 'package:admin/src/features/listar/logic/export_visitor/logic/export_visitor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,6 +18,7 @@ class VisitorFormWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final Size size = MediaQuery.of(context).size;
+    watch(pathStateProvider);
 
     return Form(
       key: _formKey,
