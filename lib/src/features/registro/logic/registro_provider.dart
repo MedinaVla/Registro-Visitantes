@@ -64,9 +64,6 @@ final visitorStateProvider =
   return vi;
 });
 
-///Variable que guarda informacion del carnet escaneado y cargado por el file scanning_qrcode
-final barcodeStateProvider = StateProvider<String>((ref) => '');
-
 ///TextEditingController of Form Registration Visitors
 final nameControllerProvider =
     StateProvider<TextEditingController>((ref) => TextEditingController());
