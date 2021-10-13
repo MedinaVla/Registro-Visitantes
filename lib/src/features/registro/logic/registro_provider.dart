@@ -79,7 +79,10 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
   final switchValue = ref.watch(swtichStateProvider);
   const oneSec = const Duration(seconds: 1);
   final _pathProvider = ref.watch(pathStateProvider);
+  print('********');
 
+  print(barcode.state);
+  print('********');
   if (switchValue.state == false) {
     ///Cargo el archivo barcode_result cada segundo
     ///si es diferente asigno los valores al formulario
@@ -87,7 +90,7 @@ final fileStreamProvider = StreamProvider.autoDispose<void>((ref) async* {
     new Timer.periodic(oneSec, (Timer t) async {
       var externalAssetBundle = ExternalAssetBundle("scanning_qrcode");
       var datos = await externalAssetBundle.loadString("barcode_result.txt");
-      if (datos != barcode.state && name.state.text.isEmpty) {
+      if (datos != barcode.state) {
         barcode.state = datos;
 
         /// Variable that convert datos in line splitter

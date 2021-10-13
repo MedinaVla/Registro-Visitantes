@@ -20,7 +20,15 @@ validateSpell() {
 
 validateNumeber() {
   return Validators.compose([
-    Validators.patternRegExp(RegExp(r"^\d+$"), 'Solo se permite numeros'),
-    Validators.required('Introduzca el numero')
+    Validators.patternRegExp(RegExp(r"^\d+$"), 'Solo se permite números'),
+    Validators.required('Introduzca el # solapín')
+  ]);
+}
+
+validateCi() {
+  return Validators.compose([
+    Validators.patternRegExp(RegExp(r"^\d+$"), 'Solo se permite números'),
+    Validators.minLength(11, 'El CI debe tener 11 digitos'),
+    Validators.required('Introduzca el CI')
   ]);
 }

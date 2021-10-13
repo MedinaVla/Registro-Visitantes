@@ -22,7 +22,7 @@ class CiVisitor extends ConsumerWidget {
       switchValue: !switchValue.state,
       errorFont: errorFont,
       labelText: 'CI',
-      validator: validateNumeber(),
+      validator: validateCi(),
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       iconValue: Icons.badge_outlined,
       maxLength: 11,

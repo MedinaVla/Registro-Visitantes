@@ -21,21 +21,11 @@ class UploadForm extends ConsumerWidget {
       child: Column(
         children: [
           SizedBox(height: defaultPadding),
-          columnTextForm(
-            context,
-            size,
-            textForm1: PasswordFormUpload(),
-          ),
           Divider(),
           SizedBox(height: defaultPadding),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ElevatedButtonIcon(
-                icon: Icons.save,
-                label: Text('Aceptar'),
-                onPressed: () {},
-              ),
               Container(
                 width: size.width / 10,
               ),
